@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: mobileshop_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: mobileshop
+      POSTGRES_PASSWORD: mobileshop_qatar_2024
+      POSTGRES_DB: mobileshop_qatar
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mobileshop -d mobileshop_qatar"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres_data:

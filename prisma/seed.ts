@@ -45,27 +45,27 @@ async function main() {
   const smartphones = await prisma.category.upsert({
     where: { slug: "smartphones" },
     update: {},
-    create: { name: "Smartphones", slug: "smartphones", emoji: "📱", sortOrder: 1 },
+    create: { name: "Smartphones", slug: "smartphones", iconEmoji: "📱", sortOrder: 1 },
   });
   const tablets = await prisma.category.upsert({
     where: { slug: "tablets" },
     update: {},
-    create: { name: "Tablets", slug: "tablets", emoji: "📟", sortOrder: 2 },
+    create: { name: "Tablets", slug: "tablets", iconEmoji: "📟", sortOrder: 2 },
   });
   const audio = await prisma.category.upsert({
     where: { slug: "audio" },
     update: {},
-    create: { name: "Audio", slug: "audio", emoji: "🎧", sortOrder: 3 },
+    create: { name: "Audio", slug: "audio", iconEmoji: "🎧", sortOrder: 3 },
   });
   const wearables = await prisma.category.upsert({
     where: { slug: "wearables" },
     update: {},
-    create: { name: "Wearables", slug: "wearables", emoji: "⌚", sortOrder: 4 },
+    create: { name: "Wearables", slug: "wearables", iconEmoji: "⌚", sortOrder: 4 },
   });
   const accessories = await prisma.category.upsert({
     where: { slug: "accessories" },
     update: {},
-    create: { name: "Accessories", slug: "accessories", emoji: "🔌", sortOrder: 5 },
+    create: { name: "Accessories", slug: "accessories", iconEmoji: "🔌", sortOrder: 5 },
   });
 
   // Products
