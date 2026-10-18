@@ -34,7 +34,7 @@ export function ProductCard({ product }: ProductCardProps) {
     <Link href={`/product/${product.slug}`} className="product-card group block">
       {/* Image */}
       <div className="relative bg-gray-50 aspect-square overflow-hidden">
-        {primaryImage ? (
+        {primaryImage?.url && primaryImage.url.trim() ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={primaryImage.url}

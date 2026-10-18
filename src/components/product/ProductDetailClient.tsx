@@ -86,7 +86,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
                     selectedImage === i ? "border-brand-500 shadow-md" : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
-                  {img.url ? (
+                  {img.url && img.url.trim() ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={img.url} alt={img.altText || ""} className="w-full h-full object-cover" />
                   ) : (
@@ -98,7 +98,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
 
             {/* Main image */}
             <div className="flex-1 relative bg-white rounded-2xl overflow-hidden aspect-square">
-              {product.images[selectedImage]?.url ? (
+              {product.images[selectedImage]?.url && product.images[selectedImage].url.trim() ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={product.images[selectedImage].url}

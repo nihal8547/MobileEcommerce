@@ -51,7 +51,7 @@ export function CartPageClient() {
             {items.map((item) => (
               <div key={`${item.productId}-${item.variant}`} className="bg-white rounded-2xl p-4 shadow-card flex gap-4">
                 <div className="w-20 h-20 bg-gray-50 rounded-xl flex items-center justify-center flex-shrink-0 text-3xl overflow-hidden">
-                  {item.imageUrl ? (
+                  {item.imageUrl && item.imageUrl.trim() ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
                   ) : "📱"}

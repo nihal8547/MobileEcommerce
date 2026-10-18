@@ -327,7 +327,7 @@ export function CheckoutPageClient() {
                 {items.map((item) => (
                   <div key={`${item.productId}-${item.variant}`} className="flex gap-3 text-sm">
                     <div className="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center text-xl flex-shrink-0">
-                      {item.imageUrl ? (
+                      {item.imageUrl && item.imageUrl.trim() ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover rounded-lg" />
                       ) : "📱"}
