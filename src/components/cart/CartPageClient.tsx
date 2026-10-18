@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Trash2, ShoppingBag, ArrowRight, Tag } from "lucide-react";
+import { Trash2, ShoppingBag, ArrowRight, Tag, Smartphone } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { formatQar } from "@/lib/utils";
 
@@ -17,7 +17,9 @@ export function CartPageClient() {
   if (totalItems === 0) {
     return (
       <div className="container-main py-20 flex flex-col items-center text-center gap-6">
-        <div className="text-7xl">🛒</div>
+        <div className="flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 mx-auto">
+          <ShoppingBag size={40} className="text-gray-300" strokeWidth={1} />
+        </div>
         <div>
           <h2 className="text-2xl font-extrabold text-gray-900 mb-2" style={{ fontFamily: "var(--font-syne)" }}>
             Your cart is empty
@@ -50,11 +52,11 @@ export function CartPageClient() {
           <div className="lg:col-span-2 flex flex-col gap-3">
             {items.map((item) => (
               <div key={`${item.productId}-${item.variant}`} className="bg-white rounded-2xl p-4 shadow-card flex gap-4">
-                <div className="w-20 h-20 bg-gray-50 rounded-xl flex items-center justify-center flex-shrink-0 text-3xl overflow-hidden">
+                <div className="w-20 h-20 bg-gray-50 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden">
                   {item.imageUrl ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
-                  ) : "📱"}
+                  ) : <Smartphone size={32} className="text-gray-300" strokeWidth={1} />}
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-gray-900 text-sm leading-snug line-clamp-2">{item.name}</p>

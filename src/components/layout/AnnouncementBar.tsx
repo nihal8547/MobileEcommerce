@@ -1,12 +1,12 @@
 "use client";
 
 const offers = [
-  "🎉 Free Delivery on orders above QAR 200 in Doha",
-  "📱 Latest iPhone 16 Pro now available — Limited Stock!",
-  "💳 0% Installment plans available",
-  "🚚 Express same-day delivery in Qatar",
-  "✅ Genuine products with official warranty",
-  "🏷️ Up to 40% OFF on selected accessories",
+  "Free Delivery on orders above QAR 200 in Doha",
+  "Latest iPhone 16 Pro now available — Limited Stock!",
+  "0% Installment plans available",
+  "Express same-day delivery in Qatar",
+  "Genuine products with official warranty",
+  "Up to 40% OFF on selected accessories",
 ];
 
 export function AnnouncementBar() {

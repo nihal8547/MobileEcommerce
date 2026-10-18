@@ -94,7 +94,7 @@ export default function RegisterPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Qatar Mobile Number</label>
                 <div className="flex gap-2">
                   <div className="flex items-center gap-1.5 px-3 border border-gray-200 rounded-xl bg-gray-50 text-sm text-gray-600 whitespace-nowrap">
-                    🇶🇦 +974
+                    +974
                   </div>
                   <div className="relative flex-1">
                     <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -155,7 +155,7 @@ export default function RegisterPage() {
               </div>
 
               <div className="bg-brand-50 border border-brand-100 rounded-xl p-4 text-sm text-gray-700">
-                <p className="font-medium text-gray-900 mb-1">🚚 Delivery in Qatar</p>
+                <p className="font-medium text-gray-900 mb-1">Delivery in Qatar</p>
                 <p>Standard: QAR 15 (free above QAR 200)</p>
                 <p>Express: QAR 30 — Same day delivery in Doha</p>
               </div>

@@ -20,7 +20,7 @@ export default function AdminSettingsPage() {
     // Store
     storeName: "MobileShop Qatar",
     currency: "QAR",
-    announcementText: "🚚 Free delivery on orders above QAR 200",
+    announcementText: "Free delivery on orders above QAR 200",
   });
 
   const handleSave = async () => {
@@ -87,7 +87,7 @@ export default function AdminSettingsPage() {
               <label className="block text-sm font-medium text-gray-700 mb-1.5">WhatsApp Number</label>
               <div className="flex gap-2">
                 <span className="flex items-center px-3 border border-gray-200 rounded-xl bg-gray-50 text-sm text-gray-600 shrink-0">
-                  🇶🇦
+                  QA
                 </span>
                 <input
                   type="text"

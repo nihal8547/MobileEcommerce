@@ -2,12 +2,20 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, Zap } from "lucide-react";
+import { ChevronLeft, ChevronRight, Zap, Flame, Headphones, Smartphone } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const slides = [
+const slides: {
+  id: number; badgeIcon: LucideIcon; badgeText: string;
+  title: string; subtitle: string;
+  cta: string; ctaLink: string; secondaryCta: string; secondaryLink: string;
+  priceFrom: string; discount: string;
+  gradient: string; accent: string; ProductIcon: LucideIcon;
+}[] = [
   {
     id: 1,
-    badge: "⚡ Flash Sale — 48 Hours Only",
+    badgeIcon: Zap,
+    badgeText: "Flash Sale — 48 Hours Only",
     title: "iPhone 16 Pro\nMax",
     subtitle: "Titanium Design · A18 Pro Chip · 4K ProRes Video",
     cta: "Shop Now",
@@ -18,12 +26,12 @@ const slides = [
     discount: "Save QAR 600",
     gradient: "from-[#1a0a06] via-[#2e1008] to-[#4a1a2e]",
     accent: "#ff4a28",
-    imageEmoji: "📱",
-    pattern: "smartphones",
+    ProductIcon: Smartphone,
   },
   {
     id: 2,
-    badge: "🔥 Best Seller in Qatar",
+    badgeIcon: Flame,
+    badgeText: "Best Seller in Qatar",
     title: "Samsung Galaxy\nS25 Ultra",
     subtitle: "200MP Camera · Snapdragon 8 Elite · Built-in S Pen",
     cta: "Order Now",
@@ -34,12 +42,12 @@ const slides = [
     discount: "Free Galaxy Buds",
     gradient: "from-[#061628] via-[#0a2040] to-[#1a3060]",
     accent: "#3B82F6",
-    imageEmoji: "📲",
-    pattern: "galaxy",
+    ProductIcon: Smartphone,
   },
   {
     id: 3,
-    badge: "🎧 Audio Collection",
+    badgeIcon: Headphones,
+    badgeText: "Audio Collection",
     title: "Sony WH-1000XM6\nANC",
     subtitle: "30hr Battery · Industry-Best Noise Cancellation",
     cta: "Discover Audio",
@@ -50,8 +58,7 @@ const slides = [
     discount: "Free Carry Case",
     gradient: "from-[#0a0a14] via-[#16162a] to-[#2a1a40]",
     accent: "#8B5CF6",
-    imageEmoji: "🎧",
-    pattern: "audio",
+    ProductIcon: Headphones,
   },
 ];
 
@@ -69,6 +76,8 @@ export function HeroCarousel() {
   }, [next, paused]);
 
   const slide = slides[current];
+  const BadgeIcon = slide.badgeIcon;
+  const ProductIcon = slide.ProductIcon;
 
   return (
     <section
@@ -76,14 +85,8 @@ export function HeroCarousel() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Background pattern */}
       <div className="absolute inset-0 qatar-pattern opacity-30" />
-
-      {/* Decorative orbs */}
-      <div
-        className="absolute top-10 right-1/4 w-64 h-64 rounded-full blur-3xl opacity-20"
-        style={{ background: slide.accent }}
-      />
+      <div className="absolute top-10 right-1/4 w-64 h-64 rounded-full blur-3xl opacity-20" style={{ background: slide.accent }} />
       <div className="absolute bottom-0 left-1/4 w-48 h-48 rounded-full blur-3xl opacity-10 bg-white" />
 
       <div className="container-main relative z-10">
@@ -91,8 +94,8 @@ export function HeroCarousel() {
           {/* Content */}
           <div className="order-2 md:order-1 animate-fade-in" key={slide.id + "content"}>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-sm text-white/90 mb-6 backdrop-blur-sm">
-              <Zap size={13} className="text-yellow-400" />
-              {slide.badge}
+              <BadgeIcon size={13} className="text-yellow-400" />
+              {slide.badgeText}
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05] mb-4 whitespace-pre-line" style={{ fontFamily: "var(--font-syne)", textShadow: "0 2px 20px rgba(0,0,0,0.3)" }}>
@@ -110,10 +113,7 @@ export function HeroCarousel() {
                   {slide.priceFrom}
                 </div>
               </div>
-              <div
-                className="px-3 py-1.5 rounded-lg text-sm font-bold text-white"
-                style={{ background: slide.accent }}
-              >
+              <div className="px-3 py-1.5 rounded-lg text-sm font-bold text-white" style={{ background: slide.accent }}>
                 {slide.discount}
               </div>
             </div>
@@ -135,7 +135,7 @@ export function HeroCarousel() {
             </div>
           </div>
 
-          {/* Visual */}
+          {/* Visual — lucide icon inside glowing box */}
           <div className="order-1 md:order-2 flex justify-center items-center" key={slide.id + "image"}>
             <div className="relative">
               <div
@@ -145,11 +145,13 @@ export function HeroCarousel() {
                   border: `1px solid ${slide.accent}44`,
                 }}
               >
-                <span className="text-[7rem] sm:text-[9rem] md:text-[10rem] leading-none filter drop-shadow-2xl">
-                  {slide.imageEmoji}
-                </span>
+                <ProductIcon
+                  size={120}
+                  className="opacity-90 drop-shadow-2xl"
+                  style={{ color: slide.accent }}
+                  strokeWidth={1}
+                />
               </div>
-              {/* Floating badge */}
               <div className="absolute -bottom-3 -right-3 bg-white rounded-2xl px-4 py-2 shadow-xl">
                 <div className="text-xs text-gray-500 font-medium">Price from</div>
                 <div className="font-extrabold text-gray-900 text-sm tabular-nums">{slide.priceFrom}</div>
@@ -159,33 +161,16 @@ export function HeroCarousel() {
         </div>
       </div>
 
-      {/* Navigation */}
-      <button
-        onClick={prev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-all"
-        aria-label="Previous"
-      >
+      <button onClick={prev} className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-all" aria-label="Previous">
         <ChevronLeft size={20} />
       </button>
-      <button
-        onClick={next}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-all"
-        aria-label="Next"
-      >
+      <button onClick={next} className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-all" aria-label="Next">
         <ChevronRight size={20} />
       </button>
 
-      {/* Dots */}
       <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
         {slides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrent(i)}
-            className={`rounded-full transition-all duration-300 ${
-              i === current ? "w-6 h-2 bg-white" : "w-2 h-2 bg-white/40"
-            }`}
-            aria-label={`Slide ${i + 1}`}
-          />
+          <button key={i} onClick={() => setCurrent(i)} className={`rounded-full transition-all duration-300 ${i === current ? "w-6 h-2 bg-white" : "w-2 h-2 bg-white/40"}`} aria-label={`Slide ${i + 1}`} />
         ))}
       </div>
     </section>
