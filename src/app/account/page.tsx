@@ -2,30 +2,31 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Package, Heart, MapPin, Settings, LogOut, ChevronRight, Clock, CheckCircle, Truck, ShoppingBag } from "lucide-react";
+import { Package, Heart, MapPin, Settings, LogOut, ChevronRight, Clock, CheckCircle, Truck, ShoppingBag, Smartphone, Headphones, Watch } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { formatQar } from "@/lib/utils";
 
-const MOCK_ORDERS = [
+const MOCK_ORDERS: { id: string; date: string; status: string; total: number; items: { name: string; qty: number; Icon: LucideIcon }[] }[] = [
   {
     id: "MSQ-847392-001",
     date: "Oct 12, 2026",
     status: "delivered",
     total: 4799,
-    items: [{ name: "iPhone 16 Pro Max 256GB", qty: 1, image: "📱" }],
+    items: [{ name: "iPhone 16 Pro Max 256GB", qty: 1, Icon: Smartphone }],
   },
   {
     id: "MSQ-847392-002",
     date: "Oct 8, 2026",
     status: "shipped",
     total: 1299,
-    items: [{ name: "Samsung Galaxy Buds3 Pro", qty: 2, image: "🎧" }],
+    items: [{ name: "Samsung Galaxy Buds3 Pro", qty: 2, Icon: Headphones }],
   },
   {
     id: "MSQ-847392-003",
     date: "Sep 28, 2026",
     status: "processing",
     total: 899,
-    items: [{ name: "Apple Watch Series 10", qty: 1, image: "⌚" }],
+    items: [{ name: "Apple Watch Series 10", qty: 1, Icon: Watch }],
   },
 ];
 
@@ -109,7 +110,7 @@ export default function AccountPage() {
                   <div className="flex items-center gap-3 mb-3">
                     {order.items.map((item, i) => (
                       <div key={i} className="flex items-center gap-2 text-sm text-gray-700">
-                        <span className="text-xl">{item.image}</span>
+                        <item.Icon size={18} className="text-gray-400 shrink-0" strokeWidth={1.5} />
                         <span>{item.name} × {item.qty}</span>
                       </div>
                     ))}

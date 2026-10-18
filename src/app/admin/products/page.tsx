@@ -2,15 +2,16 @@
 
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { useState } from "react";
-import { Plus, Search, Edit2, Trash2, Eye, ToggleLeft, ToggleRight } from "lucide-react";
+import { Plus, Search, Edit2, Trash2, Eye, ToggleLeft, ToggleRight, Smartphone, Headphones, Watch, Tablet } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const MOCK_PRODUCTS = [
-  { id: "1", name: "iPhone 16 Pro Max 256GB", category: "Smartphones", brand: "Apple", price: 4799, stock: 12, active: true, featured: true, image: "📱" },
-  { id: "2", name: "Samsung Galaxy S25 Ultra", category: "Smartphones", brand: "Samsung", price: 3999, stock: 8, active: true, featured: true, image: "📱" },
-  { id: "3", name: "Sony WH-1000XM6", category: "Audio", brand: "Sony", price: 1399, stock: 25, active: true, featured: false, image: "🎧" },
-  { id: "4", name: "Apple Watch Series 10", category: "Wearables", brand: "Apple", price: 899, stock: 15, active: true, featured: false, image: "⌚" },
-  { id: "5", name: "iPad Pro M4 11\"", category: "Tablets", brand: "Apple", price: 3299, stock: 6, active: false, featured: false, image: "📟" },
-  { id: "6", name: "AirPods Pro 3", category: "Audio", brand: "Apple", price: 999, stock: 30, active: true, featured: true, image: "🎧" },
+const MOCK_PRODUCTS: { id: string; name: string; category: string; brand: string; price: number; stock: number; active: boolean; featured: boolean; Icon: LucideIcon }[] = [
+  { id: "1", name: "iPhone 16 Pro Max 256GB", category: "Smartphones", brand: "Apple", price: 4799, stock: 12, active: true, featured: true, Icon: Smartphone },
+  { id: "2", name: "Samsung Galaxy S25 Ultra", category: "Smartphones", brand: "Samsung", price: 3999, stock: 8, active: true, featured: true, Icon: Smartphone },
+  { id: "3", name: "Sony WH-1000XM6", category: "Audio", brand: "Sony", price: 1399, stock: 25, active: true, featured: false, Icon: Headphones },
+  { id: "4", name: "Apple Watch Series 10", category: "Wearables", brand: "Apple", price: 899, stock: 15, active: true, featured: false, Icon: Watch },
+  { id: "5", name: "iPad Pro M4 11\"", category: "Tablets", brand: "Apple", price: 3299, stock: 6, active: false, featured: false, Icon: Tablet },
+  { id: "6", name: "AirPods Pro 3", category: "Audio", brand: "Apple", price: 999, stock: 30, active: true, featured: true, Icon: Headphones },
 ];
 
 export default function AdminProductsPage() {
@@ -76,8 +77,8 @@ export default function AdminProductsPage() {
                 <tr key={product.id} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-xl shrink-0">
-                        {product.image}
+                      <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center shrink-0">
+                        <product.Icon size={20} className="text-gray-400" strokeWidth={1.5} />
                       </div>
                       <div>
                         <p className="font-medium text-gray-900 leading-tight">{product.name}</p>

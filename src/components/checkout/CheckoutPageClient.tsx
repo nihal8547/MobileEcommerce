@@ -330,7 +330,7 @@ export function CheckoutPageClient() {
                       {item.imageUrl && item.imageUrl.trim() ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover rounded-lg" />
-                      ) : "📱"}
+                      ) : <div className="w-full h-full bg-gray-100 flex items-center justify-center"><span className="text-gray-300 text-xs">—</span></div>}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-medium text-gray-900 line-clamp-2 text-xs leading-snug">{item.name}</p>

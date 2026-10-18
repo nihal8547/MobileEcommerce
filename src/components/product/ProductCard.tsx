@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Heart, ShoppingCart, Star } from "lucide-react";
+import { Heart, ShoppingCart, Star, Smartphone } from "lucide-react";
 import { formatQar, calcDiscount } from "@/lib/utils";
 import { useCart } from "@/hooks/useCart";
 import type { Product } from "@/types";
@@ -42,8 +42,8 @@ export function ProductCard({ product }: ProductCardProps) {
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-5xl">
-            📱
+          <div className="w-full h-full flex items-center justify-center bg-gray-100">
+            <Smartphone size={56} className="text-gray-300" strokeWidth={1} />
           </div>
         )}
 

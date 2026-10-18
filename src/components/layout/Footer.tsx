@@ -123,7 +123,7 @@ export function Footer() {
       <div className="border-t border-gray-800">
         <div className="container-main py-4 flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="text-xs text-gray-500">
-            © 2024 MobileShop Qatar. All rights reserved. Doha, State of Qatar 🇶🇦
+            © 2024 MobileShop Qatar. All rights reserved. Doha, State of Qatar
           </p>
           <a
             href="https://wa.me/97466000000?text=Hi!%20I%20need%20help%20with%20my%20order."

@@ -1,12 +1,17 @@
 import Link from "next/link";
+import { Smartphone, Tablet, Headphones, Watch, Cable, Gamepad2 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const categories = [
-  { name: "Smartphones", slug: "smartphones", icon: "📱", count: "150+ Products", color: "from-brand-500 to-brand-700", bg: "bg-brand-50", text: "text-brand-600" },
-  { name: "Tablets", slug: "tablets", icon: "📲", count: "45+ Products", color: "from-blue-500 to-blue-700", bg: "bg-blue-50", text: "text-blue-600" },
-  { name: "Audio", slug: "audio", icon: "🎧", count: "80+ Products", color: "from-purple-500 to-purple-700", bg: "bg-purple-50", text: "text-purple-600" },
-  { name: "Wearables", slug: "wearables", icon: "⌚", count: "60+ Products", color: "from-green-500 to-green-700", bg: "bg-green-50", text: "text-green-600" },
-  { name: "Accessories", slug: "accessories", icon: "🔌", count: "200+ Products", color: "from-amber-500 to-amber-700", bg: "bg-amber-50", text: "text-amber-600" },
-  { name: "Gaming", slug: "gaming", icon: "🎮", count: "30+ Products", color: "from-rose-500 to-rose-700", bg: "bg-rose-50", text: "text-rose-600" },
+const categories: {
+  name: string; slug: string; icon: LucideIcon;
+  count: string; bg: string; iconColor: string; text: string;
+}[] = [
+  { name: "Smartphones", slug: "smartphones", icon: Smartphone, count: "150+ Products", bg: "bg-brand-50", iconColor: "text-brand-500", text: "text-brand-600" },
+  { name: "Tablets", slug: "tablets", icon: Tablet, count: "45+ Products", bg: "bg-blue-50", iconColor: "text-blue-500", text: "text-blue-600" },
+  { name: "Audio", slug: "audio", icon: Headphones, count: "80+ Products", bg: "bg-purple-50", iconColor: "text-purple-500", text: "text-purple-600" },
+  { name: "Wearables", slug: "wearables", icon: Watch, count: "60+ Products", bg: "bg-green-50", iconColor: "text-green-500", text: "text-green-600" },
+  { name: "Accessories", slug: "accessories", icon: Cable, count: "200+ Products", bg: "bg-amber-50", iconColor: "text-amber-500", text: "text-amber-600" },
+  { name: "Gaming", slug: "gaming", icon: Gamepad2, count: "30+ Products", bg: "bg-rose-50", iconColor: "text-rose-500", text: "text-rose-600" },
 ];
 
 export function CategoryGrid() {
@@ -24,18 +29,18 @@ export function CategoryGrid() {
         </div>
 
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
-          {categories.map((cat) => (
+          {categories.map(({ name, slug, icon: Icon, count, bg, iconColor, text }) => (
             <Link
-              key={cat.slug}
-              href={`/category/${cat.slug}`}
+              key={slug}
+              href={`/category/${slug}`}
               className="group flex flex-col items-center gap-2.5 p-4 rounded-2xl border border-gray-100 hover:border-gray-200 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
             >
-              <div className={`w-14 h-14 rounded-2xl ${cat.bg} flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-200`}>
-                {cat.icon}
+              <div className={`w-14 h-14 rounded-2xl ${bg} flex items-center justify-center group-hover:scale-110 transition-transform duration-200`}>
+                <Icon size={26} className={iconColor} />
               </div>
               <div className="text-center">
-                <p className="font-bold text-gray-900 text-sm leading-tight">{cat.name}</p>
-                <p className={`text-xs ${cat.text} mt-0.5`}>{cat.count}</p>
+                <p className="font-bold text-gray-900 text-sm leading-tight">{name}</p>
+                <p className={`text-xs ${text} mt-0.5`}>{count}</p>
               </div>
             </Link>
           ))}

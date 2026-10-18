@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ShoppingCart, Heart, Share2, Shield, Truck, RotateCcw, ChevronRight, Star, Check } from "lucide-react";
+import { ShoppingCart, Heart, Share2, Shield, Truck, RotateCcw, ChevronRight, Star, Check, Smartphone } from "lucide-react";
 import { formatQar, calcDiscount } from "@/lib/utils";
 import { WhatsAppButton } from "@/components/whatsapp/WhatsAppButton";
 import { useCart } from "@/hooks/useCart";
@@ -90,7 +90,9 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={img.url} alt={img.altText || ""} className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-full h-full bg-gray-100 flex items-center justify-center text-2xl">📱</div>
+                    <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                      <Smartphone size={24} className="text-gray-300" strokeWidth={1} />
+                    </div>
                   )}
                 </button>
               ))}
@@ -106,7 +108,9 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
                   className="w-full h-full object-contain p-6"
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-[8rem]">📱</div>
+                <div className="w-full h-full flex items-center justify-center bg-gray-50">
+                  <Smartphone size={120} className="text-gray-200" strokeWidth={1} />
+                </div>
               )}
               {discount && discount > 0 && (
                 <div className="absolute top-4 left-4">

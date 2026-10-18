@@ -2,9 +2,10 @@
 
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { useState } from "react";
-import { Plus, Edit2, Trash2, ToggleLeft, ToggleRight, GripVertical } from "lucide-react";
+import { Plus, Edit2, Trash2, ToggleLeft, ToggleRight, GripVertical, Smartphone, Headphones, Truck } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const MOCK_BANNERS = [
+const MOCK_BANNERS: { id: string; title: string; subtitle: string; badge: string; bgColor: string; active: boolean; slot: string; Icon: LucideIcon }[] = [
   {
     id: "1",
     title: "iPhone 16 Pro Max",
@@ -13,7 +14,7 @@ const MOCK_BANNERS = [
     bgColor: "#1a1a2e",
     active: true,
     slot: "hero",
-    emoji: "📱",
+    Icon: Smartphone,
   },
   {
     id: "2",
@@ -23,7 +24,7 @@ const MOCK_BANNERS = [
     bgColor: "#0f3460",
     active: true,
     slot: "hero",
-    emoji: "📱",
+    Icon: Smartphone,
   },
   {
     id: "3",
@@ -33,7 +34,7 @@ const MOCK_BANNERS = [
     bgColor: "#8b1a3f",
     active: true,
     slot: "promo",
-    emoji: "🎧",
+    Icon: Headphones,
   },
   {
     id: "4",
@@ -43,7 +44,7 @@ const MOCK_BANNERS = [
     bgColor: "#1e3a5f",
     active: false,
     slot: "promo",
-    emoji: "🚚",
+    Icon: Truck,
   },
 ];
 
@@ -80,10 +81,10 @@ export default function AdminBannersPage() {
 
               {/* Preview */}
               <div
-                className="w-24 h-14 rounded-xl flex items-center justify-center text-3xl shrink-0"
+                className="w-24 h-14 rounded-xl flex items-center justify-center shrink-0"
                 style={{ backgroundColor: banner.bgColor }}
               >
-                {banner.emoji}
+                <banner.Icon size={28} className="text-white/70" strokeWidth={1} />
               </div>
 
               <div className="flex-1 min-w-0">
@@ -130,10 +131,10 @@ export default function AdminBannersPage() {
               <GripVertical size={16} className="text-gray-300 cursor-grab shrink-0" />
 
               <div
-                className="w-24 h-14 rounded-xl flex items-center justify-center text-3xl shrink-0"
+                className="w-24 h-14 rounded-xl flex items-center justify-center shrink-0"
                 style={{ backgroundColor: banner.bgColor }}
               >
-                {banner.emoji}
+                <banner.Icon size={28} className="text-white/70" strokeWidth={1} />
               </div>
 
               <div className="flex-1 min-w-0">
