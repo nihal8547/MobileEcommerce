@@ -45,75 +45,56 @@ export function FlashDeals() {
   const formatDigit = (num: number) => String(num).padStart(2, "0");
 
   return (
-    <section className="py-10 bg-gradient-to-b from-brand-50/60 via-surface-secondary to-white border-y border-brand-100/50">
-      <div className="container-main">
+    <section className="py-12 md:py-16 bg-gradient-to-b from-[#090d16] via-[#0f172a] to-[#090d16] border-y border-white/10 relative overflow-hidden text-white">
+      {/* Decorative ambient elements */}
+      <div className="absolute inset-0 qatar-pattern opacity-10 pointer-events-none" />
+      <div className="absolute -top-24 right-1/4 w-96 h-96 bg-brand-500/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="container-main relative z-10">
         {/* Header with Live Countdown */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-500 text-white text-xs font-extrabold uppercase tracking-wider mb-2 shadow-sm">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-500 text-white text-xs font-extrabold uppercase tracking-wider mb-2.5 shadow-md shadow-brand-500/25">
               <Zap size={14} className="fill-white animate-pulse" />
               <span>Flash Deals Qatar</span>
             </div>
-            <h2 className="section-title flex items-center gap-2">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-2.5 tracking-tight">
               Limited-Time Offers
-              <Flame size={26} className="text-brand-500 fill-brand-500 hidden sm:inline-block" />
+              <Flame size={26} className="text-brand-400 fill-brand-400 animate-pulse hidden sm:inline-block" />
             </h2>
-            <p className="text-gray-500 text-sm mt-1">
+            <p className="text-gray-400 text-sm mt-1 max-w-xl">
               Deep discounts on flagships — special prices valid while stock lasts in Doha
             </p>
           </div>
 
-          {/* Countdown Clock */}
-          <div className="flex items-center gap-2 bg-white px-4 py-2.5 rounded-2xl border border-brand-100 shadow-sm self-start md:self-auto">
-            <Clock size={16} className="text-brand-500" />
-            <span className="text-xs font-bold text-gray-500 uppercase tracking-wider mr-1">
+          {/* Countdown Clock (Dark Glassmorphism) */}
+          <div className="flex items-center gap-2.5 bg-white/10 border border-white/15 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-lg self-start md:self-auto">
+            <Clock size={16} className="text-brand-400" />
+            <span className="text-xs font-bold text-gray-300 uppercase tracking-wider mr-1">
               Ends In:
             </span>
-            <div className="flex items-center gap-1 font-mono font-extrabold text-sm text-gray-900">
-              <span className="bg-gray-900 text-white px-2 py-1 rounded-lg">
+            <div className="flex items-center gap-1 font-mono font-extrabold text-sm text-white">
+              <span className="bg-black/60 text-white px-2 py-1 rounded-lg border border-white/10 shadow-inner">
                 {formatDigit(timeLeft.hours)}
               </span>
-              <span>:</span>
-              <span className="bg-gray-900 text-white px-2 py-1 rounded-lg">
+              <span className="text-brand-400">:</span>
+              <span className="bg-black/60 text-white px-2 py-1 rounded-lg border border-white/10 shadow-inner">
                 {formatDigit(timeLeft.minutes)}
               </span>
-              <span>:</span>
-              <span className="bg-brand-500 text-white px-2 py-1 rounded-lg">
+              <span className="text-brand-400">:</span>
+              <span className="bg-brand-500 text-white px-2 py-1 rounded-lg shadow-sm shadow-brand-500/30">
                 {formatDigit(timeLeft.seconds)}
               </span>
             </div>
           </div>
         </div>
 
-        {/* Product Cards with Increased Width */}
+        {/* Product Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {flashProducts.map((product, i) => {
-            const soldPercents = [85, 92, 78, 64];
-            const soldPercent = soldPercents[i % soldPercents.length];
-
-            return (
-              <div key={product.id} className="flex flex-col">
-                <ProductCard product={product} />
-
-                {/* Deal Stock Claimed Bar */}
-                <div className="mt-2.5 px-2">
-                  <div className="flex justify-between items-center text-[11px] font-bold text-gray-500 mb-1">
-                    <span className="text-brand-600 flex items-center gap-1">
-                      <Flame size={12} className="fill-brand-500 text-brand-500" />
-                      {soldPercent}% Claimed
-                    </span>
-                    <span>{product.stockQty} Units Left</span>
-                  </div>
-                  <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-brand-400 to-brand-600 rounded-full transition-all duration-500"
-                      style={{ width: `${soldPercent}%` }}
-                    />
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {flashProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
         </div>
       </div>
     </section>

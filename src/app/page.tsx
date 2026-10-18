@@ -1,9 +1,9 @@
 import { HeroCarousel } from "@/components/home/HeroCarousel";
-import { TrustBadges } from "@/components/home/TrustBadges";
 import { CategoryGrid } from "@/components/home/CategoryGrid";
 import { FlashDeals } from "@/components/home/FlashDeals";
 import { PromoBanners } from "@/components/home/PromoBanners";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
+import { BrandPartnerBanner } from "@/components/home/BrandPartnerBanner";
 import { BrandShowcase } from "@/components/home/BrandShowcase";
 import { QatarCustomerReviews } from "@/components/home/QatarCustomerReviews";
 import { NewsletterSection } from "@/components/home/NewsletterSection";
@@ -14,10 +14,7 @@ export default function HomePage() {
       {/* 1. Hero Carousel */}
       <HeroCarousel />
 
-      {/* 2. Trust & Service Highlights */}
-      <TrustBadges />
-
-      {/* 3. Shop by Category (Round Style) */}
+      {/* 2. Shop by Category (Round Style) */}
       <CategoryGrid />
 
       {/* 4. Flash Deals with Live Countdown */}
@@ -32,7 +29,10 @@ export default function HomePage() {
         subtitle="Qatar's most loved smartphones and gadgets — same-day delivery in Doha"
       />
 
-      {/* 7. Official Brand Partners */}
+      {/* 7. Official Brand Partner Guarantee Banner */}
+      <BrandPartnerBanner />
+
+      {/* 8. Official Brand Partners Grid */}
       <BrandShowcase />
 
       {/* 8. Qatar Customer Reviews & Social Proof */}

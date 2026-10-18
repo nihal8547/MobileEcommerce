@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { ShoppingCart, Search, Heart, User, Menu, X, Phone, MapPin } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
+import { NavbarSearch } from "@/components/layout/NavbarSearch";
 
 const navLinks = [
   { label: "Smartphones", href: "/category/smartphones" },
@@ -15,9 +17,12 @@ const navLinks = [
 ];
 
 export function Navbar() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const { totalItems } = useCart();
+
+  if (pathname === "/login" || pathname?.startsWith("/admin")) return null;
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
@@ -56,16 +61,9 @@ export function Navbar() {
             </div>
           </Link>
 
-          {/* Search bar */}
+          {/* Search bar with Live Instant Suggestions */}
           <div className="flex-1 max-w-2xl hidden md:block">
-            <div className="relative">
-              <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search smartphones, tablets, accessories..."
-                className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition-all"
-              />
-            </div>
+            <NavbarSearch />
           </div>
 
           {/* Actions */}
@@ -114,15 +112,7 @@ export function Navbar() {
         {/* Mobile search */}
         {searchOpen && (
           <div className="md:hidden pb-3">
-            <div className="relative">
-              <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search products..."
-                className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-brand-400"
-                autoFocus
-              />
-            </div>
+            <NavbarSearch isMobile onCloseMobile={() => setSearchOpen(false)} />
           </div>
         )}
       </div>
@@ -130,12 +120,12 @@ export function Navbar() {
       {/* Category nav */}
       <nav className="border-t border-gray-100 hidden md:block">
         <div className="container-main">
-          <div className="flex items-center gap-0">
+          <div className="flex items-center justify-center gap-1 sm:gap-2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-4 py-3 text-sm font-medium transition-colors hover:text-brand-500 whitespace-nowrap ${
+                className={`px-4 py-2.5 text-sm font-medium transition-colors hover:text-brand-500 whitespace-nowrap rounded-lg hover:bg-gray-50 ${
                   link.label === "Offers"
                     ? "text-brand-500 font-bold"
                     : "text-gray-700"

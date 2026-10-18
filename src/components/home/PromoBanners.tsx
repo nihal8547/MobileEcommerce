@@ -1,45 +1,44 @@
 import Link from "next/link";
-import { Smartphone, Watch, Cable } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
 
-const banners: {
-  id: number; tag: string; title: string; subtitle: string; offer: string;
-  color: string; accent: string; href: string; Icon: LucideIcon; size: string;
-}[] = [
+const banners = [
   {
     id: 1,
-    tag: "Flash Sale",
-    title: "Samsung Galaxy S25",
-    subtitle: "Starting from QAR 3,299",
+    tag: "Flash Sale — Qatar",
+    title: "Samsung Galaxy S25 Ultra",
+    subtitle: "Snapdragon 8 Elite · 200MP Quad Camera · Free Galaxy Buds",
     offer: "Up to 30% OFF",
-    color: "from-[#1a2a5e] to-[#0d1a40]",
+    color: "from-[#081832] via-[#0e244d] to-[#173873]",
     accent: "#3B82F6",
-    href: "/category/smartphones",
-    Icon: Smartphone,
+    href: "/product/samsung-s25-ultra",
+    imageUrl:
+      "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=800&q=80",
     size: "lg",
   },
   {
     id: 2,
-    tag: "New Arrivals",
+    tag: "New Arrival",
     title: "Apple Watch Series 10",
-    subtitle: "QAR 1,599 onwards",
-    offer: "Free Shipping",
-    color: "from-[#1a3a1a] to-[#0d2a0d]",
-    accent: "#22C55E",
-    href: "/category/wearables",
-    Icon: Watch,
+    subtitle: "From QAR 1,799 · Thinnest Ever",
+    offer: "Free Express Shipping",
+    color: "from-[#0a1e16] via-[#123326] to-[#1c4d3a]",
+    accent: "#10B981",
+    href: "/product/apple-watch-series-10",
+    imageUrl:
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80",
     size: "sm",
   },
   {
     id: 3,
     tag: "Best Value",
-    title: "Accessories Bundle",
-    subtitle: "Cases, chargers & more",
-    offer: "Buy 2 Get 1 Free",
-    color: "from-[#3a1a0a] to-[#2a1206]",
+    title: "140W Anker & MagSafe Gear",
+    subtitle: "High-speed charging & armor cases",
+    offer: "Buy 2 Get QAR 60 Off",
+    color: "from-[#291309] via-[#3d1c0d] to-[#592b14]",
     accent: "#F59E0B",
     href: "/category/accessories",
-    Icon: Cable,
+    imageUrl:
+      "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=500&q=80",
     size: "sm",
   },
 ];
@@ -48,64 +47,111 @@ export function PromoBanners() {
   return (
     <section className="py-8 bg-surface-secondary">
       <div className="container-main">
-        <div className="grid md:grid-cols-3 gap-4">
-          {/* Large banner */}
+        <div className="grid md:grid-cols-3 gap-5 items-stretch">
+          {/* Large Hero Banner */}
           {(() => {
             const b = banners[0];
-            const BannerIcon = b.Icon;
             return (
-              <Link href={b.href} className="md:col-span-2 group relative overflow-hidden rounded-2xl">
-                <div className={`bg-gradient-to-br ${b.color} p-8 h-full min-h-[220px] flex flex-col justify-between relative`}>
-                  <div className="absolute inset-0 qatar-pattern opacity-20" />
-                  <div className="absolute -right-6 -bottom-6 w-40 h-40 rounded-full blur-2xl opacity-30" style={{ background: b.accent }} />
-                  <div className="relative z-10">
-                    <span className="inline-flex px-2.5 py-1 rounded-full text-xs font-bold text-white mb-3" style={{ background: b.accent }}>
+              <Link
+                href={b.href}
+                className="md:col-span-2 group relative overflow-hidden rounded-3xl shadow-lg transition-all duration-300 flex flex-col h-full bg-slate-900 border border-white/10"
+              >
+                <div
+                  className={`bg-gradient-to-br ${b.color} p-7 sm:p-9 h-full min-h-[300px] flex flex-col justify-between relative overflow-hidden`}
+                >
+                  <div className="absolute inset-0 qatar-pattern opacity-20 pointer-events-none" />
+                  <div
+                    className="absolute -right-8 -bottom-8 w-72 h-72 rounded-full blur-3xl opacity-35 pointer-events-none"
+                    style={{ background: b.accent }}
+                  />
+
+                  {/* Sample Product Image in Styled Frame */}
+                  <div className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-44 sm:w-60 md:w-72 h-44 sm:h-56 flex items-center justify-center p-2 rounded-2xl bg-black/30 border border-white/10 backdrop-blur-xs shadow-2xl overflow-hidden group-hover:scale-105 transition-transform duration-500">
+                    <img
+                      src={b.imageUrl}
+                      alt={b.title}
+                      className="w-full h-full object-cover rounded-xl"
+                    />
+                  </div>
+
+                  {/* Text Details */}
+                  <div className="relative z-10 max-w-[62%] sm:max-w-[58%]">
+                    <span
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold text-white mb-3 shadow-xs"
+                      style={{ background: b.accent }}
+                    >
+                      <Sparkles size={12} />
                       {b.tag}
                     </span>
-                    <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-1" style={{ fontFamily: "var(--font-syne)" }}>
+                    <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-2 tracking-tight leading-tight">
                       {b.title}
                     </h3>
-                    <p className="text-white/70 text-sm">{b.subtitle}</p>
+                    <p className="text-white/80 text-xs sm:text-sm leading-relaxed">
+                      {b.subtitle}
+                    </p>
                   </div>
-                  <div className="relative z-10 flex items-end justify-between mt-4">
-                    <span className="inline-flex px-4 py-2 bg-white/15 border border-white/20 rounded-xl text-white text-sm font-bold backdrop-blur-sm group-hover:bg-white/25 transition-colors">
-                      {b.offer} →
+
+                  <div className="relative z-10 flex items-center gap-3 mt-6">
+                    <span className="inline-flex items-center gap-2 px-4 py-2.5 bg-white/20 hover:bg-white/30 border border-white/25 rounded-xl text-white text-xs sm:text-sm font-bold backdrop-blur-md transition-colors shadow-sm">
+                      <span>{b.offer}</span>
+                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </span>
-                    <BannerIcon size={80} strokeWidth={1} className="opacity-80 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg" style={{ color: b.accent }} />
                   </div>
                 </div>
               </Link>
             );
           })()}
 
-          {/* Two small banners */}
-          <div className="flex flex-col gap-4">
-            {banners.slice(1).map((banner) => {
-              const SmallIcon = banner.Icon;
-              return (
-                <Link key={banner.id} href={banner.href} className="group relative overflow-hidden rounded-2xl">
-                  <div className={`bg-gradient-to-br ${banner.color} p-6 flex flex-col justify-between relative`} style={{ minHeight: "102px" }}>
-                    <div className="absolute inset-0 qatar-pattern opacity-20" />
-                    <div className="absolute -right-4 -bottom-4 w-24 h-24 rounded-full blur-xl opacity-30" style={{ background: banner.accent }} />
-                    <div className="relative z-10 flex items-start justify-between">
-                      <div>
-                        <span className="inline-flex px-2 py-0.5 rounded-full text-xs font-bold text-white mb-2" style={{ background: banner.accent }}>
-                          {banner.tag}
-                        </span>
-                        <h3 className="text-base font-extrabold text-white" style={{ fontFamily: "var(--font-syne)" }}>{banner.title}</h3>
-                        <p className="text-white/60 text-xs mt-0.5">{banner.subtitle}</p>
-                      </div>
-                      <SmallIcon size={40} strokeWidth={1} className="opacity-80 group-hover:scale-110 transition-transform duration-300 shrink-0" style={{ color: banner.accent }} />
-                    </div>
-                    <div className="relative z-10 mt-3">
-                      <span className="text-xs font-bold text-white/80 group-hover:text-white transition-colors">
-                        {banner.offer} →
+          {/* Two Stacked Small Banners */}
+          <div className="flex flex-col gap-5 justify-between">
+            {banners.slice(1).map((banner) => (
+              <Link
+                key={banner.id}
+                href={banner.href}
+                className="group relative overflow-hidden rounded-3xl shadow-lg transition-all duration-300 flex-1 flex flex-col bg-slate-900 border border-white/10"
+              >
+                <div
+                  className={`bg-gradient-to-br ${banner.color} p-5 sm:p-6 h-full flex items-center justify-between relative overflow-hidden`}
+                >
+                  <div className="absolute inset-0 qatar-pattern opacity-15 pointer-events-none" />
+                  <div
+                    className="absolute -right-4 -bottom-4 w-32 h-32 rounded-full blur-2xl opacity-25 pointer-events-none"
+                    style={{ background: banner.accent }}
+                  />
+
+                  {/* Text Details */}
+                  <div className="relative z-10 max-w-[62%]">
+                    <span
+                      className="inline-flex px-2.5 py-0.5 rounded-full text-[10px] font-extrabold text-white mb-1.5 shadow-xs"
+                      style={{ background: banner.accent }}
+                    >
+                      {banner.tag}
+                    </span>
+                    <h3 className="text-sm sm:text-base font-extrabold text-white tracking-tight leading-snug">
+                      {banner.title}
+                    </h3>
+                    <p className="text-white/70 text-[11px] mt-0.5 leading-tight">
+                      {banner.subtitle}
+                    </p>
+                    <div className="mt-2.5">
+                      <span className="text-[11px] font-bold text-white/90 underline flex items-center gap-1">
+                        <span>{banner.offer}</span>
+                        <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
                       </span>
                     </div>
                   </div>
-                </Link>
-              );
-            })}
+
+                  {/* Product Image in Frosted Frame */}
+                  <div className="relative z-10 w-22 h-22 sm:w-26 sm:h-26 rounded-2xl overflow-hidden bg-black/30 border border-white/10 p-1 backdrop-blur-xs flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                    <img
+                      src={banner.imageUrl}
+                      alt={banner.title}
+                      className="w-full h-full object-cover rounded-xl"
+                    />
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </div>

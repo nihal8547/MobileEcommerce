@@ -1,5 +1,7 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+
 const offers = [
   "Free Delivery on orders above QAR 200 in Doha",
   "Latest iPhone 16 Pro now available — Limited Stock!",
@@ -10,6 +12,9 @@ const offers = [
 ];
 
 export function AnnouncementBar() {
+  const pathname = usePathname();
+  if (pathname === "/login" || pathname?.startsWith("/admin")) return null;
+
   const doubled = [...offers, ...offers];
   return (
     <div className="bg-[#8b1a3f] text-white py-2 overflow-hidden relative">

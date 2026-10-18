@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 
 const footerLinks = {
@@ -26,6 +29,9 @@ const footerLinks = {
 };
 
 export function Footer() {
+  const pathname = usePathname();
+  if (pathname === "/login" || pathname?.startsWith("/admin")) return null;
+
   return (
     <footer className="bg-gray-900 text-gray-300">
       {/* Main footer */}

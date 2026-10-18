@@ -9,8 +9,11 @@ import {
   Mail,
   Lock,
   ArrowRight,
+  ArrowLeft,
   ShieldCheck,
   Sparkles,
+  Truck,
+  Star,
   CheckCircle2,
 } from "lucide-react";
 import toast from "react-hot-toast";
@@ -33,8 +36,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      // Simulate network request
-      await new Promise((r) => setTimeout(r, 900));
+      await new Promise((r) => setTimeout(r, 800));
 
       const identifier =
         loginMethod === "phone"
@@ -68,8 +70,7 @@ export default function LoginPage() {
   const handleGoogleLogin = async () => {
     setGoogleLoading(true);
     try {
-      // Simulate OAuth flow
-      await new Promise((r) => setTimeout(r, 1000));
+      await new Promise((r) => setTimeout(r, 900));
 
       const googleUser = {
         fullName: "Mohammed Al-Kuwari",
@@ -108,42 +109,153 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-[85vh] flex items-center justify-center px-4 py-12 bg-surface-secondary">
-      <div className="w-full max-w-md">
-        {/* Brand Header */}
-        <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2.5 mb-4 group">
-            <div className="w-11 h-11 rounded-2xl bg-brand-gradient flex items-center justify-center shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+    <div className="min-h-screen grid lg:grid-cols-12 bg-white">
+      {/* Left Column: Visual Brand Showcase (Desktop only) */}
+      <div className="hidden lg:flex lg:col-span-6 xl:col-span-7 relative flex-col justify-between p-10 xl:p-14 text-white overflow-hidden bg-slate-950">
+        {/* Full-bleed background image with modern luxury contrast */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1600&q=85"
+            alt="Flagship Smartphones Qatar"
+            className="w-full h-full object-cover scale-105 filter brightness-75 contrast-125 transition-transform duration-1000"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80" />
+          <div className="absolute inset-0 qatar-pattern opacity-20 pointer-events-none" />
+        </div>
+
+        {/* Ambient colored lighting */}
+        <div className="absolute top-1/4 -left-20 w-80 h-80 bg-brand-500/25 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Top Header: Brand Logo & Back Link */}
+        <div className="relative z-10 flex items-center justify-between">
+          <Link href="/" className="inline-flex items-center gap-3 group">
+            <div className="w-11 h-11 rounded-2xl bg-brand-gradient flex items-center justify-center shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform">
               <span className="text-white font-extrabold text-2xl leading-none">
                 M
               </span>
             </div>
-            <div className="text-left">
-              <div className="font-extrabold text-gray-900 text-xl tracking-tight">
+            <div>
+              <div className="font-extrabold text-white text-xl tracking-tight leading-tight">
                 MobileShop
               </div>
-              <div className="text-[10px] text-brand-600 font-bold uppercase tracking-widest leading-none flex items-center gap-1">
+              <div className="text-[10px] text-brand-400 font-bold uppercase tracking-widest leading-none flex items-center gap-1">
                 <span>Qatar</span>
                 <span className="text-xs">🇶🇦</span>
               </div>
             </div>
           </Link>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
-            Welcome back
-          </h1>
-          <p className="text-gray-500 text-xs sm:text-sm mt-1.5">
-            Sign in to track orders, manage addresses & checkout faster
-          </p>
+
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-xs font-bold text-white/80 hover:text-white bg-white/10 hover:bg-white/20 px-4 py-2 rounded-xl backdrop-blur-md transition-all border border-white/10"
+          >
+            <ArrowLeft size={14} />
+            <span>Back to Store</span>
+          </Link>
         </div>
 
-        {/* Card Container */}
-        <div className="bg-white border border-gray-100 rounded-3xl p-6 sm:p-8 shadow-card">
+        {/* Center Spotlight Card */}
+        <div className="relative z-10 my-auto py-8 max-w-xl">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-bold text-amber-300 mb-6 backdrop-blur-md shadow-xs">
+            <Sparkles size={14} />
+            <span>Qatar&apos;s #1 Online Smartphone Destination</span>
+          </div>
+
+          <h2 className="text-3xl xl:text-5xl font-black text-white tracking-tight leading-[1.12] mb-5">
+            Your Gateway to Official Flagships &amp; Accessories.
+          </h2>
+
+          <p className="text-white/80 text-sm xl:text-base leading-relaxed mb-8">
+            Enjoy factory-sealed genuine devices from Apple, Samsung, Google &amp; Sony with official Qatar agency warranty and same-day express delivery in Doha.
+          </p>
+
+          {/* Feature Badges Grid */}
+          <div className="grid grid-cols-2 gap-3.5 pt-2">
+            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/10 p-3.5 rounded-2xl">
+              <div className="w-9 h-9 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                <ShieldCheck size={20} />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-white leading-tight">Official Warranty</p>
+                <p className="text-[11px] text-white/70 leading-tight">Apple &amp; Samsung Gulf</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/10 p-3.5 rounded-2xl">
+              <div className="w-9 h-9 rounded-xl bg-brand-500/20 flex items-center justify-center text-brand-400 flex-shrink-0">
+                <Truck size={20} />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-white leading-tight">Same-Day Doha</p>
+                <p className="text-[11px] text-white/70 leading-tight">Free over QAR 200</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Social Proof */}
+        <div className="relative z-10 pt-6 border-t border-white/15 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="flex gap-0.5 text-amber-400">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} size={14} fill="currentColor" />
+              ))}
+            </div>
+            <span className="text-xs font-bold text-white">4.9 / 5 Rating</span>
+            <span className="text-xs text-white/60">• 1,200+ Verified Buyers</span>
+          </div>
+
+          <span className="text-xs text-white/60 hidden xl:inline">
+            Doha · Lusail · Al Wakrah
+          </span>
+        </div>
+      </div>
+
+      {/* Right Column: Clean Focused Login Form */}
+      <div className="lg:col-span-6 xl:col-span-5 flex flex-col justify-between p-6 sm:p-10 lg:p-12 xl:p-16 min-h-screen">
+        {/* Mobile Top Header */}
+        <div className="flex lg:hidden items-center justify-between pb-6 border-b border-gray-100 mb-6">
+          <Link href="/" className="inline-flex items-center gap-2 group">
+            <div className="w-9 h-9 rounded-xl bg-brand-gradient flex items-center justify-center shadow-xs">
+              <span className="text-white font-extrabold text-lg leading-none">M</span>
+            </div>
+            <div>
+              <div className="font-extrabold text-gray-900 text-base leading-tight">
+                MobileShop
+              </div>
+              <div className="text-[10px] text-brand-600 font-bold uppercase tracking-wider leading-none">
+                Qatar 🇶🇦
+              </div>
+            </div>
+          </Link>
+
+          <Link
+            href="/"
+            className="text-xs font-bold text-gray-500 hover:text-gray-900 inline-flex items-center gap-1"
+          >
+            <ArrowLeft size={14} />
+            <span>Store</span>
+          </Link>
+        </div>
+
+        {/* Centered Form Area */}
+        <div className="w-full max-w-md mx-auto my-auto py-4">
+          <div className="mb-7">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+              Sign In to Your Account
+            </h1>
+            <p className="text-gray-500 text-xs sm:text-sm mt-1.5">
+              Welcome back! Please enter your details to access your account.
+            </p>
+          </div>
+
           {/* Google Sign-in Button */}
           <button
             type="button"
             onClick={handleGoogleLogin}
             disabled={googleLoading || loading}
-            className="w-full flex items-center justify-center gap-3 py-3 px-4 border border-gray-200 hover:border-gray-300 rounded-2xl text-sm font-bold text-gray-700 bg-white hover:bg-gray-50 transition-all shadow-xs cursor-pointer disabled:opacity-60 active:scale-[0.99]"
+            className="w-full flex items-center justify-center gap-3 py-3 px-4 border border-gray-200 hover:border-gray-300 rounded-2xl text-sm font-bold text-gray-700 bg-white hover:bg-gray-50 transition-all shadow-2xs cursor-pointer disabled:opacity-60 active:scale-[0.99]"
           >
             {googleLoading ? (
               <span className="w-5 h-5 border-2 border-gray-300 border-t-brand-500 rounded-full animate-spin" />
@@ -354,8 +466,8 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Security & Link */}
-        <div className="mt-6 flex flex-col items-center gap-3">
+        {/* Bottom Area: Sign up & SSL */}
+        <div className="pt-6 border-t border-gray-100 flex flex-col items-center gap-2.5">
           <p className="text-center text-xs sm:text-sm text-gray-500">
             Don&apos;t have an account?{" "}
             <Link
@@ -368,10 +480,10 @@ export default function LoginPage() {
 
           <div className="inline-flex items-center gap-1.5 text-[11px] text-gray-400">
             <ShieldCheck size={14} className="text-emerald-500" />
-            <span>256-bit SSL Encrypted & Protected</span>
+            <span>256-bit SSL Encrypted &amp; Protected</span>
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

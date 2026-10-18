@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { WhatsAppFloat } from "@/components/whatsapp/WhatsAppFloat";
+import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { CartProvider } from "@/components/providers/CartProvider";
 import { Toaster } from "react-hot-toast";
 
@@ -46,9 +47,10 @@ export default function RootLayout({
         <CartProvider>
           <AnnouncementBar />
           <Navbar />
-          <main className="min-h-screen">{children}</main>
+          <main className="min-h-screen pb-16 md:pb-0">{children}</main>
           <Footer />
           <WhatsAppFloat />
+          <MobileBottomNav />
           <Toaster
             position="bottom-right"
             toastOptions={{

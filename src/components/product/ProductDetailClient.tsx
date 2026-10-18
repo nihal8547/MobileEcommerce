@@ -277,9 +277,9 @@ export function ProductDetailClient({
     }, {}) || {};
 
   return (
-    <div className="bg-surface-secondary min-h-screen pb-16">
+    <div className="bg-white min-h-screen pb-20">
       {/* Breadcrumb Header */}
-      <div className="bg-white border-b border-gray-100">
+      <div className="bg-gray-50/70 border-b border-gray-100">
         <div className="container-main py-3">
           <nav className="flex items-center gap-1.5 text-xs sm:text-sm text-gray-500 overflow-x-auto whitespace-nowrap">
             <Link href="/" className="hover:text-brand-500 transition-colors">
@@ -304,10 +304,12 @@ export function ProductDetailClient({
         </div>
       </div>
 
-      <div className="container-main py-6 sm:py-8">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 bg-white rounded-3xl p-4 sm:p-8 shadow-card">
+      <div className="container-main py-6 sm:py-10">
+        {/* Standard Open 2-Column Product Stage */}
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-start">
           {/* Left Column: Image Gallery */}
-          <div className="flex flex-col-reverse sm:flex-row gap-4">
+          <div className="lg:col-span-6 lg:sticky lg:top-24">
+            <div className="flex flex-col-reverse sm:flex-row gap-4">
             {/* Thumbnails */}
             {images.length > 1 && (
               <div className="flex sm:flex-col gap-2.5 overflow-x-auto sm:overflow-visible pb-1 sm:pb-0">
@@ -317,7 +319,7 @@ export function ProductDetailClient({
                     <button
                       key={img.id || i}
                       onClick={() => setSelectedImage(i)}
-                      className={`flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 transition-all p-1 bg-white ${
+                      className={`flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 transition-all p-0 bg-white ${
                         isSelected
                           ? "border-brand-500 shadow-md ring-2 ring-brand-100"
                           : "border-gray-200 hover:border-gray-300"
@@ -328,7 +330,7 @@ export function ProductDetailClient({
                         <img
                           src={img.url}
                           alt={img.altText || ""}
-                          className="w-full h-full object-cover rounded-xl"
+                          className="w-full h-full object-cover"
                         />
                       ) : (
                         <div className="w-full h-full bg-gray-100 flex items-center justify-center rounded-xl">
@@ -342,13 +344,13 @@ export function ProductDetailClient({
             )}
 
             {/* Main Stage Image */}
-            <div className="flex-1 relative bg-gradient-to-b from-gray-50/50 to-gray-50 rounded-2xl overflow-hidden aspect-square border border-gray-100 flex items-center justify-center p-6">
+            <div className="flex-1 relative bg-gray-50 rounded-2xl overflow-hidden aspect-square border border-gray-100 flex items-center justify-center p-0">
               {currentImage?.url && currentImage.url.trim() ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={currentImage.url}
                   alt={currentImage.altText || product.name}
-                  className="w-full h-full object-contain hover:scale-105 transition-transform duration-500 drop-shadow-md"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
@@ -389,9 +391,10 @@ export function ProductDetailClient({
               </div>
             </div>
           </div>
+        </div>
 
           {/* Right Column: Product Info & Buy Box */}
-          <div className="flex flex-col gap-5 justify-between">
+          <div className="lg:col-span-6 flex flex-col gap-5 justify-between">
             <div>
               {/* Brand & Stock Status */}
               <div className="flex items-center justify-between mb-1.5">
@@ -635,17 +638,17 @@ export function ProductDetailClient({
         {/* Detailed Tabs: Specifications, Reviews, Delivery */}
         <div
           id="product-tabs"
-          className="mt-8 bg-white rounded-3xl overflow-hidden shadow-card border border-gray-100"
+          className="mt-16 pt-10 border-t border-gray-200"
         >
-          <div className="flex border-b border-gray-100 px-6 pt-2 overflow-x-auto">
+          <div className="flex border-b border-gray-200 gap-2 overflow-x-auto">
             {(["specs", "reviews", "delivery"] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-5 py-4 text-sm font-bold capitalize transition-colors border-b-2 -mb-px whitespace-nowrap ${
+                className={`px-6 py-3.5 text-sm font-bold capitalize transition-all border-b-2 -mb-px whitespace-nowrap cursor-pointer ${
                   activeTab === tab
                     ? "border-brand-500 text-brand-600"
-                    : "border-transparent text-gray-500 hover:text-gray-800"
+                    : "border-transparent text-gray-500 hover:text-gray-900"
                 }`}
               >
                 {tab === "specs"
@@ -657,7 +660,7 @@ export function ProductDetailClient({
             ))}
           </div>
 
-          <div className="p-6 sm:p-8">
+          <div className="py-8">
             {/* Specs Tab */}
             {activeTab === "specs" && (
               <div className="grid md:grid-cols-2 gap-8">
@@ -987,50 +990,73 @@ export function ProductDetailClient({
 
         {/* Frequently Bought Together Bundle */}
         {bundleAccessories.length > 0 && (
-          <div className="mt-14 bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-sm">
-            <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div className="mt-14 bg-gradient-to-br from-white via-white to-amber-50/30 rounded-3xl p-6 sm:p-9 border border-amber-200/70 shadow-xl shadow-amber-500/5 relative overflow-hidden">
+            {/* Subtle ambient background glow */}
+            <div className="absolute top-0 right-0 w-80 h-80 bg-amber-200/20 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
+            <div className="absolute bottom-0 left-0 w-60 h-60 bg-brand-200/10 rounded-full blur-3xl pointer-events-none -ml-20 -mb-20" />
+
+            {/* Header with Badges */}
+            <div className="relative z-10 flex flex-wrap items-center justify-between gap-4 mb-8 pb-6 border-b border-gray-100">
               <div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-700 border border-amber-200">
-                  <Sparkles size={13} className="text-amber-500" />
-                  Bundle & Save QAR {bundle?.bundleDiscountQar || 60}
-                </span>
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mt-2">
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-black bg-gradient-to-r from-amber-500 to-brand-500 text-white shadow-xs">
+                    <Sparkles size={13} className="text-yellow-200" />
+                    Special Qatar Bundle Deal
+                  </span>
+                  {bundle?.bundleDiscountQar && (
+                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                      Save QAR {bundle.bundleDiscountQar} on full set
+                    </span>
+                  )}
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
                   Frequently Bought Together
                 </h2>
-                <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
-                  Customers usually buy these complementary essentials with {product.name}
+                <p className="text-xs sm:text-sm text-gray-500 mt-1 max-w-xl">
+                  Pair your <strong className="text-gray-800">{product.name}</strong> with official matching gear &amp; unlock bundle discounts with same-day Doha delivery.
                 </p>
+              </div>
+
+              <div className="hidden sm:flex items-center gap-2.5 px-4 py-2 bg-white/80 border border-amber-200/60 rounded-2xl shadow-2xs backdrop-blur-xs">
+                <ShieldCheck size={18} className="text-emerald-600 flex-shrink-0" />
+                <div className="text-left">
+                  <p className="text-[11px] font-bold text-gray-900 leading-tight">100% Genuine Qatar Stock</p>
+                  <p className="text-[10px] text-gray-500 leading-tight">Official brand warranty on all items</p>
+                </div>
               </div>
             </div>
 
-            {/* Visual Bundle Chain */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-              {/* Items Row */}
-              <div className="lg:col-span-8 flex flex-wrap sm:flex-nowrap items-center gap-3">
-                {/* Main Product */}
-                <div className="flex-1 min-w-[140px] p-4 rounded-2xl border-2 border-brand-200 bg-brand-50/20 text-center relative group">
-                  <span className="absolute top-2 left-2 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-brand-500 text-white">
+            {/* Visual Bundle Chain & Total Action Box */}
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              {/* Product Cards Row */}
+              <div className="lg:col-span-8 flex flex-col sm:flex-row items-center gap-3 sm:gap-2">
+                {/* Main Product Card */}
+                <div className="w-full sm:flex-1 p-5 rounded-2xl border-2 border-brand-400 bg-white shadow-md shadow-brand-500/5 flex flex-col items-center text-center relative group">
+                  <span className="absolute top-3 left-3 text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-brand-500 text-white shadow-xs">
                     This Item
                   </span>
-                  <div className="w-24 h-24 mx-auto mb-3 flex items-center justify-center p-2 bg-white rounded-xl shadow-xs">
+                  <div className="w-28 h-28 mx-auto my-3 flex items-center justify-center p-2.5 bg-gray-50/80 rounded-2xl group-hover:scale-105 transition-transform">
                     <img
                       src={
                         currentImage?.url ||
                         "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=400&q=80"
                       }
                       alt={product.name}
-                      className="max-h-full max-w-full object-contain"
+                      className="max-h-full max-w-full object-contain drop-shadow-sm"
                     />
                   </div>
-                  <p className="text-xs font-bold text-gray-900 line-clamp-2 mb-1">
+                  <p className="text-xs sm:text-sm font-bold text-gray-900 line-clamp-2 h-9 mb-1.5 leading-tight">
                     {product.name}
                   </p>
-                  <p className="text-sm font-extrabold text-gray-900">
+                  <p className="text-base font-black text-gray-900 font-price tracking-tight">
                     {formatQar(product.priceQar)}
                   </p>
+                  <span className="mt-2 text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md inline-flex items-center gap-1">
+                    <Check size={12} strokeWidth={3} /> Main Device
+                  </span>
                 </div>
 
-                {/* Accessories with + icons */}
+                {/* Accessories with connecting plus icons */}
                 {bundleAccessories.map((accItem) => {
                   const isSelected = selectedBundleItemSlugs.includes(accItem.slug);
                   const accImg =
@@ -1040,126 +1066,182 @@ export function ProductDetailClient({
                   return (
                     <div
                       key={accItem.id}
-                      className="flex items-center gap-3 flex-1 min-w-[140px]"
+                      className="w-full sm:flex-1 flex flex-col sm:flex-row items-center gap-3 sm:gap-2"
                     >
-                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 text-gray-500 font-bold flex-shrink-0">
-                        <Plus size={16} />
+                      {/* Plus icon divider */}
+                      <div className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white shadow-md border border-gray-200 text-brand-600 font-black flex-shrink-0 z-10 sm:-mx-1">
+                        <Plus size={16} strokeWidth={3} />
                       </div>
 
+                      {/* Interactive Accessory Card */}
                       <div
                         onClick={() => toggleBundleItem(accItem.slug)}
-                        className={`flex-1 p-4 rounded-2xl border-2 transition-all cursor-pointer text-center relative ${
+                        className={`w-full flex-1 p-5 rounded-2xl border-2 transition-all duration-200 cursor-pointer flex flex-col items-center text-center relative select-none ${
                           isSelected
-                            ? "border-brand-500 bg-brand-50/20 shadow-xs"
-                            : "border-gray-200 bg-gray-50/50 opacity-60 hover:opacity-90"
+                            ? "border-brand-500 bg-white shadow-md shadow-brand-500/10 ring-2 ring-brand-100"
+                            : "border-2 border-dashed border-gray-300 bg-gray-50/60 opacity-60 hover:opacity-90 hover:border-gray-400"
                         }`}
                       >
+                        {/* Checkbox badge */}
                         <span
-                          className={`absolute top-2 left-2 w-5 h-5 rounded-md flex items-center justify-center transition-colors ${
+                          className={`absolute top-3 left-3 w-6 h-6 rounded-lg flex items-center justify-center transition-all ${
                             isSelected
-                              ? "bg-brand-500 text-white"
-                              : "border border-gray-300 bg-white"
+                              ? "bg-brand-500 text-white shadow-xs scale-105"
+                              : "border-2 border-gray-300 bg-white text-transparent hover:border-brand-400"
                           }`}
                         >
-                          {isSelected && <Check size={13} />}
+                          <Check size={14} strokeWidth={3} />
                         </span>
 
-                        <div className="w-24 h-24 mx-auto mb-3 flex items-center justify-center p-2 bg-white rounded-xl shadow-xs">
+                        <div className="w-28 h-28 mx-auto my-3 flex items-center justify-center p-2.5 bg-gray-50/80 rounded-2xl group-hover:scale-105 transition-transform">
                           <img
                             src={accImg}
                             alt={accItem.name}
-                            className="max-h-full max-w-full object-contain"
+                            className="max-h-full max-w-full object-contain drop-shadow-sm"
                           />
                         </div>
-                        <p className="text-xs font-bold text-gray-900 line-clamp-2 mb-1">
+
+                        <p className="text-xs sm:text-sm font-bold text-gray-900 line-clamp-2 h-9 mb-1.5 leading-tight">
                           {accItem.name}
                         </p>
-                        <p className="text-sm font-extrabold text-gray-900">
+                        <p className="text-base font-black text-gray-900 font-price tracking-tight">
                           {formatQar(accItem.priceQar)}
                         </p>
+
+                        <span
+                          className={`mt-2 text-[11px] font-bold px-2 py-0.5 rounded-md inline-flex items-center gap-1 transition-colors ${
+                            isSelected
+                              ? "text-brand-600 bg-brand-50"
+                              : "text-gray-400 bg-gray-100"
+                          }`}
+                        >
+                          {isSelected ? "✓ Included" : "+ Tap to Add"}
+                        </span>
                       </div>
                     </div>
                   );
                 })}
               </div>
 
-              {/* Total Summary Box */}
-              <div className="lg:col-span-4 p-6 rounded-2xl bg-gray-50 border border-gray-100 flex flex-col justify-between">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">
-                    Bundle Summary
-                  </p>
-                  <p className="text-sm font-medium text-gray-700">
-                    {1 + selectedAccessories.length} items selected
-                  </p>
-
-                  <div className="mt-3 flex items-baseline gap-2">
-                    <span className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
-                      {formatQar(bundleFinalTotal)}
-                    </span>
-                    {bundleDiscount > 0 && (
-                      <span className="text-sm text-gray-400 line-through">
-                        {formatQar(bundleRawTotal)}
+              {/* Action / Checkout Box */}
+              <div className="lg:col-span-4 p-6 sm:p-7 rounded-3xl bg-white border border-gray-200/90 shadow-lg flex flex-col justify-between relative overflow-hidden">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+                    <div>
+                      <p className="text-[11px] font-extrabold uppercase tracking-wider text-gray-400">
+                        Bundle Total
+                      </p>
+                      <p className="text-sm font-bold text-gray-900">
+                        {1 + selectedAccessories.length} items configured
+                      </p>
+                    </div>
+                    {isAllBundleSelected && bundleDiscount > 0 ? (
+                      <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-500 text-white shadow-2xs animate-pulse">
+                        Best Deal
+                      </span>
+                    ) : (
+                      <span className="text-[11px] font-medium text-gray-400">
+                        Custom Set
                       </span>
                     )}
                   </div>
 
-                  {bundleDiscount > 0 && (
-                    <div className="mt-2 inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
-                      <Sparkles size={12} />
-                      Saving QAR {bundleDiscount} with bundle
+                  {/* Price display with standard font-price */}
+                  <div>
+                    <div className="flex items-baseline gap-2.5 font-price">
+                      <span className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight font-sans">
+                        {formatQar(bundleFinalTotal)}
+                      </span>
+                      {bundleDiscount > 0 && (
+                        <span className="text-base text-gray-400 line-through font-sans">
+                          {formatQar(bundleRawTotal)}
+                        </span>
+                      )}
                     </div>
-                  )}
+
+                    {bundleDiscount > 0 && (
+                      <div className="mt-2.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200 shadow-2xs">
+                        <Sparkles size={13} className="text-emerald-600 flex-shrink-0" />
+                        <span>Instant Bundle Discount: Save QAR {bundleDiscount}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Trust Bullets */}
+                  <div className="pt-2 flex flex-col gap-1.5 text-xs text-gray-600">
+                    <div className="flex items-center gap-2">
+                      <Truck size={14} className="text-brand-500 flex-shrink-0" />
+                      <span>Free Express Doha Delivery included</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CreditCard size={14} className="text-brand-500 flex-shrink-0" />
+                      <span>Pay by Cash on Delivery or Card at door</span>
+                    </div>
+                  </div>
                 </div>
 
                 <button
                   type="button"
                   onClick={handleAddBundleToCart}
-                  className="mt-5 w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-brand-500 hover:bg-brand-600 active:scale-[0.98] text-white font-bold text-sm shadow-md shadow-brand-500/20 transition-all cursor-pointer"
+                  className="mt-6 w-full flex items-center justify-center gap-2.5 py-3.5 px-5 rounded-2xl bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 active:scale-[0.98] text-white font-extrabold text-sm shadow-lg shadow-brand-500/25 transition-all cursor-pointer"
                 >
-                  <ShoppingCart size={16} />
-                  Add {1 + selectedAccessories.length} Items to Cart
+                  <ShoppingCart size={18} />
+                  <span>Add {1 + selectedAccessories.length} Items to Cart</span>
                 </button>
               </div>
             </div>
 
-            {/* Checklist Selection */}
-            <div className="mt-6 pt-5 border-t border-gray-100 flex flex-col gap-2.5">
-              <label className="flex items-center gap-3 text-xs sm:text-sm text-gray-700 cursor-pointer select-none">
+            {/* Checklist Selection List */}
+            <div className="mt-8 pt-6 border-t border-gray-100 flex flex-col gap-3">
+              <p className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">
+                Customize items in this combo:
+              </p>
+
+              {/* Main item row */}
+              <div className="flex items-center gap-3 p-3 rounded-2xl bg-white border border-gray-100 shadow-2xs">
                 <input
                   type="checkbox"
                   checked={true}
                   disabled
-                  className="w-4 h-4 rounded text-brand-500 accent-brand-500"
+                  className="w-4 h-4 rounded text-brand-500 accent-brand-500 cursor-not-allowed"
                 />
-                <span className="font-semibold text-gray-900">This Item:</span>
-                <span className="truncate">{product.name}</span>
-                <span className="font-extrabold text-gray-900 ml-auto">
+                <span className="text-xs font-bold px-2 py-0.5 rounded bg-brand-50 text-brand-700">
+                  Primary
+                </span>
+                <span className="text-xs sm:text-sm font-semibold text-gray-900 truncate">
+                  {product.name}
+                </span>
+                <span className="text-sm font-black text-gray-900 font-price ml-auto">
                   {formatQar(product.priceQar)}
                 </span>
-              </label>
+              </div>
 
+              {/* Accessory rows */}
               {bundleAccessories.map((accItem) => {
                 const isSelected = selectedBundleItemSlugs.includes(accItem.slug);
                 return (
-                  <label
+                  <div
                     key={accItem.id}
                     onClick={() => toggleBundleItem(accItem.slug)}
-                    className="flex items-center gap-3 text-xs sm:text-sm text-gray-700 cursor-pointer select-none"
+                    className={`flex items-center gap-3 p-3 rounded-2xl border transition-all cursor-pointer select-none ${
+                      isSelected
+                        ? "bg-white border-brand-200 shadow-2xs"
+                        : "bg-gray-50/60 border-gray-100 opacity-60 hover:opacity-100"
+                    }`}
                   >
                     <input
                       type="checkbox"
                       checked={isSelected}
                       onChange={() => {}}
-                      className="w-4 h-4 rounded text-brand-500 accent-brand-500"
+                      className="w-4 h-4 rounded text-brand-500 accent-brand-500 cursor-pointer"
                     />
-                    <span className="font-medium text-gray-800 truncate">
+                    <span className="text-xs sm:text-sm font-semibold text-gray-800 truncate">
                       {accItem.name}
                     </span>
-                    <span className="font-extrabold text-gray-900 ml-auto">
+                    <span className="text-sm font-black text-gray-900 font-price ml-auto">
                       {formatQar(accItem.priceQar)}
                     </span>
-                  </label>
+                  </div>
                 );
               })}
             </div>

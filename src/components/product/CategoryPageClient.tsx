@@ -1,9 +1,70 @@
 "use client";
 
 import { useState } from "react";
-import { SlidersHorizontal, ChevronDown, Grid2X2, List } from "lucide-react";
+import {
+  SlidersHorizontal,
+  ChevronDown,
+  Grid2X2,
+  List,
+  ShieldCheck,
+  Truck,
+  Sparkles,
+} from "lucide-react";
 import { ProductCard } from "@/components/product/ProductCard";
 import type { Product } from "@/types";
+
+const CATEGORY_HEROES: Record<
+  string,
+  {
+    image: string;
+    tagline: string;
+    gradient: string;
+    badge: string;
+  }
+> = {
+  smartphones: {
+    image:
+      "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=80",
+    tagline: "Apple, Samsung & Google Flagships with Official Qatar Agency Warranty",
+    gradient: "from-[#140804] via-[#240e06] to-[#3d1424]",
+    badge: "100% Genuine Sealed Packs",
+  },
+  tablets: {
+    image:
+      "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80",
+    tagline: "iPad Pro M4, iPad Air & Galaxy Tab with Apple Pencil support",
+    gradient: "from-[#081628] via-[#0c2242] to-[#183a6a]",
+    badge: "Pro Productivity & Creativity",
+  },
+  audio: {
+    image:
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
+    tagline: "Active Noise Cancelling Wireless Headphones, Earbuds & Speakers",
+    gradient: "from-[#0a0a14] via-[#16162a] to-[#261838]",
+    badge: "Hi-Res LDAC & Dolby Atmos",
+  },
+  wearables: {
+    image:
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
+    tagline: "Apple Watch Series 10, Ultra 2 & Galaxy Watch with ECG & GPS",
+    gradient: "from-[#0e1726] via-[#12243d] to-[#1b3d68]",
+    badge: "Advanced Health & Fitness",
+  },
+  accessories: {
+    image:
+      "https://images.unsplash.com/photo-1609592807664-88fae32231b6?auto=format&fit=crop&w=800&q=80",
+    tagline: "140W GaN Fast Chargers, Spigen Cases, MagSafe Wireless & Cables",
+    gradient: "from-[#221006] via-[#351809] to-[#4d2410]",
+    badge: "Fast 140W Power & Armor",
+  },
+  gaming: {
+    image:
+      "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?auto=format&fit=crop&w=800&q=80",
+    tagline: "PS5 Pro, Nintendo Switch OLED, Rog Ally & Wireless Controllers",
+    gradient: "from-[#10081e] via-[#1c0f33] to-[#2e1850]",
+    badge: "Next-Gen 4K 120fps",
+  },
+};
 
 const PRODUCT_IMAGES = [
   "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80",
@@ -86,15 +147,64 @@ export function CategoryPageClient({ slug }: CategoryPageClientProps) {
   return (
     <div className="bg-surface-secondary min-h-screen">
       {/* Category hero */}
-      <div className="bg-gradient-to-br from-[#1a0a06] via-[#2e1008] to-[#4a1a2e] py-10">
-        <div className="container-main">
-          <p className="text-brand-300 text-xs font-bold uppercase tracking-widest mb-2">Shop</p>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>
-            {categoryName}
-          </h1>
-          <p className="text-white/60 text-sm">{MOCK_PRODUCTS.length} products available in Qatar</p>
-        </div>
-      </div>
+      {(() => {
+        const heroData = CATEGORY_HEROES[slug] || {
+          image:
+            "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=80",
+          tagline: "Explore Qatar's best collection of genuine consumer electronics",
+          gradient: "from-[#140804] via-[#240e06] to-[#3d1424]",
+          badge: "Official Qatar Agency Warranty",
+        };
+
+        return (
+          <div
+            className={`bg-gradient-to-br ${heroData.gradient} py-10 sm:py-14 relative overflow-hidden text-white`}
+          >
+            <div className="absolute inset-0 qatar-pattern opacity-25 pointer-events-none" />
+            <div className="container-main relative z-10">
+              <div className="grid md:grid-cols-12 gap-6 items-center">
+                <div className="md:col-span-8">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/10 border border-white/20 mb-3 backdrop-blur-md">
+                    <Sparkles size={13} className="text-amber-400" />
+                    <span>{heroData.badge}</span>
+                  </div>
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-2">
+                    {categoryName}
+                  </h1>
+                  <p className="text-white/80 text-sm sm:text-base max-w-xl leading-relaxed mb-4">
+                    {heroData.tagline}
+                  </p>
+
+                  <div className="flex flex-wrap items-center gap-3 text-xs text-white/90">
+                    <span className="flex items-center gap-1.5 bg-black/25 px-2.5 py-1 rounded-lg">
+                      <Truck size={14} className="text-brand-400" />
+                      Same-Day Doha Delivery
+                    </span>
+                    <span className="flex items-center gap-1.5 bg-black/25 px-2.5 py-1 rounded-lg">
+                      <ShieldCheck size={14} className="text-emerald-400" />
+                      100% Genuine Sealed
+                    </span>
+                    <span className="text-white/60">
+                      • {MOCK_PRODUCTS.length} Models Available
+                    </span>
+                  </div>
+                </div>
+
+                {/* Sample Category Hero Image */}
+                <div className="md:col-span-4 flex justify-center md:justify-end">
+                  <div className="w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-60 rounded-3xl bg-white/5 border border-white/15 p-4 flex items-center justify-center backdrop-blur-md shadow-2xl relative group">
+                    <img
+                      src={heroData.image}
+                      alt={categoryName}
+                      className="max-h-full max-w-full object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.6)] group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
       <div className="container-main py-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">

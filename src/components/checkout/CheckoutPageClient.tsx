@@ -83,7 +83,7 @@ export function CheckoutPageClient() {
           <span className="text-gray-900 font-medium">Checkout</span>
         </div>
 
-        <h1 className="text-2xl font-extrabold text-gray-900 mb-6" style={{ fontFamily: "var(--font-syne)" }}>Checkout</h1>
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-6 tracking-tight">Checkout</h1>
 
         <StepIndicator />
 
@@ -95,7 +95,7 @@ export function CheckoutPageClient() {
               {/* Step 1: Address */}
               <div className={`bg-white rounded-2xl shadow-card p-6 mb-5 ${step !== "address" && "opacity-70"}`}>
                 <div className="flex items-center justify-between mb-5">
-                  <h2 className="font-extrabold text-gray-900 flex items-center gap-2" style={{ fontFamily: "var(--font-syne)" }}>
+                  <h2 className="font-extrabold text-gray-900 flex items-center gap-2">
                     <MapPin size={18} className="text-brand-500" />
                     Delivery Address
                   </h2>
@@ -297,13 +297,13 @@ export function CheckoutPageClient() {
               {/* Step 3: Place order */}
               {step === "review" && (
                 <div className="bg-white rounded-2xl shadow-card p-6">
-                  <h2 className="font-extrabold text-gray-900 mb-4" style={{ fontFamily: "var(--font-syne)" }}>Review & Place Order</h2>
+                  <h2 className="font-extrabold text-gray-900 mb-4 tracking-tight">Review & Place Order</h2>
                   <div className="flex flex-col gap-3 text-sm mb-5">
                     <div className="flex justify-between"><span className="text-gray-500">Subtotal</span><span className="font-semibold tabular-nums">{formatQar(subtotalQar)}</span></div>
                     <div className="flex justify-between"><span className="text-gray-500">Delivery ({deliveryType === "STANDARD" ? "Standard" : "Express"})</span><span className={`font-semibold ${deliveryFee === 0 ? "text-green-600" : ""} tabular-nums`}>{deliveryFee === 0 ? "FREE" : formatQar(deliveryFee)}</span></div>
                     <div className="flex justify-between text-base font-extrabold border-t border-gray-100 pt-3 mt-1">
                       <span>Total</span>
-                      <span className="tabular-nums" style={{ fontFamily: "var(--font-syne)" }}>{formatQar(total)}</span>
+                      <span className="tabular-nums tracking-tight">{formatQar(total)}</span>
                     </div>
                   </div>
                   <button type="submit" disabled={loading} className="btn-primary w-full py-3.5 text-base disabled:opacity-70">
@@ -320,17 +320,22 @@ export function CheckoutPageClient() {
           {/* Order summary sidebar */}
           <div>
             <div className="bg-white rounded-2xl shadow-card p-5 sticky top-24">
-              <h3 className="font-extrabold text-gray-900 mb-4 text-sm" style={{ fontFamily: "var(--font-syne)" }}>
+              <h3 className="font-extrabold text-gray-900 mb-4 text-sm tracking-tight">
                 Order Items ({items.length})
               </h3>
               <div className="flex flex-col gap-3 max-h-64 overflow-y-auto">
                 {items.map((item) => (
                   <div key={`${item.productId}-${item.variant}`} className="flex gap-3 text-sm">
-                    <div className="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center text-xl flex-shrink-0">
-                      {item.imageUrl && item.imageUrl.trim() ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover rounded-lg" />
-                      ) : <div className="w-full h-full bg-gray-100 flex items-center justify-center"><span className="text-gray-300 text-xs">—</span></div>}
+                    <div className="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center flex-shrink-0 p-1 border border-gray-100 overflow-hidden">
+                      <img
+                        src={
+                          item.imageUrl && item.imageUrl.trim()
+                            ? item.imageUrl
+                            : "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=200&q=80"
+                        }
+                        alt={item.name}
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-medium text-gray-900 line-clamp-2 text-xs leading-snug">{item.name}</p>

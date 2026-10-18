@@ -62,18 +62,18 @@ export function ProductCard({ product }: ProductCardProps) {
 
         {/* Wishlist */}
         <button
-          className="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-brand-50"
+          className="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white/95 shadow-md flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all hover:bg-brand-50"
           onClick={(e) => { e.preventDefault(); }}
           aria-label="Add to wishlist"
         >
           <Heart size={15} className="text-gray-500 hover:text-brand-500" />
         </button>
 
-        {/* Quick add */}
-        <div className="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+        {/* Quick add for Desktop hover */}
+        <div className="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 hidden sm:block">
           <button
             onClick={handleAddToCart}
-            className="w-full py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold flex items-center justify-center gap-2 transition-colors"
+            className="w-full py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold flex items-center justify-center gap-2 transition-colors cursor-pointer"
           >
             <ShoppingCart size={15} />
             Add to Cart
@@ -82,20 +82,20 @@ export function ProductCard({ product }: ProductCardProps) {
       </div>
 
       {/* Info */}
-      <div className="p-3.5">
+      <div className="p-3 sm:p-3.5">
         {product.brand && (
-          <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider mb-0.5">
+          <p className="text-[11px] sm:text-xs text-gray-400 font-semibold uppercase tracking-wider mb-0.5">
             {product.brand.name}
           </p>
         )}
-        <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 leading-snug mb-2">
+        <h3 className="text-xs sm:text-sm font-semibold text-gray-900 line-clamp-2 leading-snug mb-1.5 sm:mb-2 min-h-[32px] sm:min-h-[38px]">
           {product.name}
         </h3>
 
         {/* Rating */}
         {product.rating && product.rating > 0 && (
-          <div className="flex items-center gap-1 mb-2">
-            <div className="star-rating text-xs">
+          <div className="flex items-center gap-1 mb-1.5 sm:mb-2">
+            <div className="star-rating text-[11px] sm:text-xs">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star
                   key={i}
@@ -104,20 +104,31 @@ export function ProductCard({ product }: ProductCardProps) {
                 />
               ))}
             </div>
-            <span className="text-xs text-gray-400">({product.reviewCount})</span>
+            <span className="text-[10px] sm:text-xs text-gray-400">({product.reviewCount})</span>
           </div>
         )}
 
-        {/* Price */}
-        <div className="flex items-baseline gap-2">
-          <span className="text-base font-extrabold text-gray-900 text-qar">
-            {formatQar(product.priceQar)}
-          </span>
-          {product.originalPriceQar && product.originalPriceQar > product.priceQar && (
-            <span className="text-xs text-gray-400 line-through text-qar">
-              {formatQar(product.originalPriceQar)}
+        {/* Price & Mobile Add to Cart */}
+        <div className="flex items-center justify-between gap-1 pt-0.5">
+          <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
+            <span className="text-sm sm:text-base font-extrabold text-gray-900 text-qar">
+              {formatQar(product.priceQar)}
             </span>
-          )}
+            {product.originalPriceQar && product.originalPriceQar > product.priceQar && (
+              <span className="text-[11px] sm:text-xs text-gray-400 line-through text-qar">
+                {formatQar(product.originalPriceQar)}
+              </span>
+            )}
+          </div>
+
+          {/* Quick Add Button for Mobile Touch Devices */}
+          <button
+            onClick={handleAddToCart}
+            className="sm:hidden w-8 h-8 rounded-xl bg-brand-500 hover:bg-brand-600 active:scale-95 text-white flex items-center justify-center shadow-xs shrink-0 cursor-pointer"
+            aria-label="Add to cart"
+          >
+            <ShoppingCart size={14} />
+          </button>
         </div>
 
         {/* Stock warning */}
