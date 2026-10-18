@@ -1,0 +1,438 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── CATALOG SCHEMA ────────────────────────────────────────────────────────────
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  nameAr      String?
+  slug        String    @unique
+  description String?
+  imageUrl    String?
+  iconEmoji   String?
+  isActive    Boolean   @default(true)
+  sortOrder   Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  products    Product[]
+  banners     Banner[]
+
+  @@map("categories")
+  @@schema("catalog")
+}
+
+model Brand {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  slug      String    @unique
+  logoUrl   String?
+  isActive  Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  products  Product[]
+
+  @@map("brands")
+  @@schema("catalog")
+}
+
+model Product {
+  id              String          @id @default(cuid())
+  name            String
+  nameAr          String?
+  slug            String          @unique
+  sku             String          @unique
+  description     String?
+  descriptionAr   String?
+  priceQar        Decimal         @db.Decimal(10, 2)
+  originalPriceQar Decimal?       @db.Decimal(10, 2)
+  discountPercent Int?
+  stockQty        Int             @default(0)
+  isActive        Boolean         @default(true)
+  isFeatured      Boolean         @default(false)
+  isBestSeller    Boolean         @default(false)
+  isNewArrival    Boolean         @default(false)
+  whatsappEnabled Boolean         @default(true)
+  rating          Float?          @default(0)
+  reviewCount     Int             @default(0)
+  categoryId      String
+  brandId         String?
+  category        Category        @relation(fields: [categoryId], references: [id])
+  brand           Brand?          @relation(fields: [brandId], references: [id])
+  images          ProductImage[]
+  specs           ProductSpec[]
+  variants        ProductVariant[]
+  orderItems      OrderItem[]
+  reviews         Review[]
+  cartItems       CartItem[]
+  wishlistItems   WishlistItem[]
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  @@map("products")
+  @@schema("catalog")
+}
+
+model ProductImage {
+  id        String  @id @default(cuid())
+  productId String
+  url       String
+  altText   String?
+  sortOrder Int     @default(0)
+  isPrimary Boolean @default(false)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("product_images")
+  @@schema("catalog")
+}
+
+model ProductSpec {
+  id        String  @id @default(cuid())
+  productId String
+  label     String
+  labelAr   String?
+  value     String
+  valueAr   String?
+  groupName String?
+  sortOrder Int     @default(0)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("product_specs")
+  @@schema("catalog")
+}
+
+model ProductVariant {
+  id         String  @id @default(cuid())
+  productId  String
+  name       String
+  value      String
+  priceQar   Decimal? @db.Decimal(10, 2)
+  stockQty   Int      @default(0)
+  imageUrl   String?
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("product_variants")
+  @@schema("catalog")
+}
+
+// ─── PROMOTIONS SCHEMA ─────────────────────────────────────────────────────────
+
+model Banner {
+  id          String    @id @default(cuid())
+  title       String
+  subtitle    String?
+  imageUrl    String
+  mobileImageUrl String?
+  linkUrl     String?
+  badgeText   String?
+  position    BannerPosition @default(HERO)
+  isActive    Boolean   @default(true)
+  sortOrder   Int       @default(0)
+  startsAt    DateTime?
+  endsAt      DateTime?
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("banners")
+  @@schema("promotions")
+}
+
+model Coupon {
+  id             String      @id @default(cuid())
+  code           String      @unique
+  description    String?
+  discountType   DiscountType
+  discountValue  Decimal     @db.Decimal(10, 2)
+  minOrderQar    Decimal?    @db.Decimal(10, 2)
+  maxDiscountQar Decimal?    @db.Decimal(10, 2)
+  usageLimit     Int?
+  usedCount      Int         @default(0)
+  isActive       Boolean     @default(true)
+  startsAt       DateTime?
+  expiresAt      DateTime?
+  orders         Order[]
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  @@map("coupons")
+  @@schema("promotions")
+}
+
+// ─── USERS SCHEMA ──────────────────────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  email         String?   @unique
+  emailVerified DateTime?
+  phone         String?   @unique
+  name          String?
+  image         String?
+  role          UserRole  @default(CUSTOMER)
+  isActive      Boolean   @default(true)
+  accounts      Account[]
+  sessions      Session[]
+  addresses     Address[]
+  orders        Order[]
+  cart          Cart?
+  wishlist      Wishlist?
+  reviews       Review[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@map("users")
+  @@schema("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+  @@schema("users")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+  @@schema("users")
+}
+
+model Address {
+  id         String   @id @default(cuid())
+  userId     String
+  fullName   String
+  phone      String
+  line1      String
+  line2      String?
+  area       String
+  city       String   @default("Doha")
+  country    String   @default("Qatar")
+  isDefault  Boolean  @default(false)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orders     Order[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("addresses")
+  @@schema("users")
+}
+
+// ─── ORDERS SCHEMA ─────────────────────────────────────────────────────────────
+
+model Order {
+  id               String        @id @default(cuid())
+  orderNumber      String        @unique
+  userId           String
+  addressId        String
+  couponId         String?
+  status           OrderStatus   @default(PENDING)
+  paymentMethod    PaymentMethod
+  paymentStatus    PaymentStatus @default(PENDING)
+  paymentId        String?
+  deliveryType     DeliveryType  @default(STANDARD)
+  subtotalQar      Decimal       @db.Decimal(10, 2)
+  discountQar      Decimal       @default(0) @db.Decimal(10, 2)
+  deliveryFeeQar   Decimal       @default(0) @db.Decimal(10, 2)
+  totalQar         Decimal       @db.Decimal(10, 2)
+  notes            String?
+  estimatedDelivery DateTime?
+  deliveredAt      DateTime?
+  user             User          @relation(fields: [userId], references: [id])
+  address          Address       @relation(fields: [addressId], references: [id])
+  coupon           Coupon?       @relation(fields: [couponId], references: [id])
+  items            OrderItem[]
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@map("orders")
+  @@schema("orders")
+}
+
+model OrderItem {
+  id         String  @id @default(cuid())
+  orderId    String
+  productId  String
+  name       String
+  imageUrl   String?
+  priceQar   Decimal @db.Decimal(10, 2)
+  quantity   Int
+  variant    String?
+  order      Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product    Product @relation(fields: [productId], references: [id])
+
+  @@map("order_items")
+  @@schema("orders")
+}
+
+// ─── CART SCHEMA ───────────────────────────────────────────────────────────────
+
+model Cart {
+  id        String     @id @default(cuid())
+  userId    String     @unique
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     CartItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@map("carts")
+  @@schema("cart")
+}
+
+model CartItem {
+  id        String  @id @default(cuid())
+  cartId    String
+  productId String
+  quantity  Int     @default(1)
+  variant   String?
+  cart      Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@unique([cartId, productId, variant])
+  @@map("cart_items")
+  @@schema("cart")
+}
+
+model Wishlist {
+  id        String         @id @default(cuid())
+  userId    String         @unique
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     WishlistItem[]
+  createdAt DateTime       @default(now())
+
+  @@map("wishlists")
+  @@schema("cart")
+}
+
+model WishlistItem {
+  id         String   @id @default(cuid())
+  wishlistId String
+  productId  String
+  wishlist   Wishlist @relation(fields: [wishlistId], references: [id], onDelete: Cascade)
+  product    Product  @relation(fields: [productId], references: [id])
+  createdAt  DateTime @default(now())
+
+  @@unique([wishlistId, productId])
+  @@map("wishlist_items")
+  @@schema("cart")
+}
+
+// ─── REVIEWS SCHEMA ────────────────────────────────────────────────────────────
+
+model Review {
+  id        String   @id @default(cuid())
+  productId String
+  userId    String
+  rating    Int
+  title     String?
+  comment   String?
+  isVerified Boolean @default(false)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([productId, userId])
+  @@map("reviews")
+  @@schema("reviews")
+}
+
+// ─── SETTINGS SCHEMA ───────────────────────────────────────────────────────────
+
+model StoreSettings {
+  id                  String  @id @default("1")
+  storeName           String  @default("MobileShop Qatar")
+  storeNameAr         String  @default("موبايل شوب قطر")
+  logoUrl             String?
+  whatsappEnabled     Boolean @default(true)
+  whatsappNumber      String  @default("+97466000000")
+  whatsappGreeting    String  @default("Hello! I'm interested in this product:")
+  codEnabled          Boolean @default(true)
+  onlinePayEnabled    Boolean @default(true)
+  standardDeliveryQar Decimal @default(15) @db.Decimal(10, 2)
+  expressDeliveryQar  Decimal @default(30) @db.Decimal(10, 2)
+  freeDeliveryAboveQar Decimal? @db.Decimal(10, 2)
+  currency            String  @default("QAR")
+  countryCode         String  @default("+974")
+  updatedAt           DateTime @updatedAt
+
+  @@map("store_settings")
+  @@schema("settings")
+}
+
+// ─── ENUMS ─────────────────────────────────────────────────────────────────────
+
+enum UserRole {
+  CUSTOMER
+  ADMIN
+  @@schema("users")
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+  @@schema("orders")
+}
+
+enum PaymentMethod {
+  COD
+  ONLINE
+  @@schema("orders")
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+  @@schema("orders")
+}
+
+enum DeliveryType {
+  STANDARD
+  EXPRESS
+  @@schema("orders")
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED
+  @@schema("promotions")
+}
+
+enum BannerPosition {
+  HERO
+  PROMO_TOP
+  PROMO_BOTTOM
+  SIDEBAR
+  @@schema("promotions")
+}
