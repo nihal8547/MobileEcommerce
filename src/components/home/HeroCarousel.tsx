@@ -228,24 +228,30 @@ export function HeroCarousel() {
                   </div>
 
                   {/* Floating Trust Badge */}
-                  <div className="absolute top-1 -left-2 sm:top-2 sm:-left-6 bg-gray-900/85 backdrop-blur-md border border-white/20 rounded-xl sm:rounded-2xl px-2.5 sm:px-3.5 py-1.5 sm:py-2 shadow-xl flex items-center gap-1.5 sm:gap-2 text-white">
-                    <ShieldCheck size={14} className="text-emerald-400 flex-shrink-0" />
-                    <span className="text-[10px] sm:text-[11px] font-bold">
+                  <div
+                    suppressHydrationWarning
+                    className="absolute top-2 left-2 sm:top-3 sm:-left-4 bg-black/75 backdrop-blur-md border border-white/15 rounded-xl sm:rounded-2xl px-2.5 sm:px-3 py-1 sm:py-1.5 shadow-xl flex items-center gap-1.5 text-white"
+                  >
+                    <ShieldCheck size={13} className="text-emerald-400 shrink-0" />
+                    <span className="text-[10px] sm:text-xs font-semibold tracking-wide">
                       {slide.featureTag}
                     </span>
                   </div>
 
-                  {/* Floating Price Pill */}
-                  <div className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-4 bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2 sm:py-2.5 shadow-xl border border-gray-100 flex items-center gap-2 sm:gap-3">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold">
-                      <Truck size={15} />
+                  {/* Floating Delivery Pill - Visible on Tablet/Desktop to keep mobile minimal and clean */}
+                  <div
+                    suppressHydrationWarning
+                    className="hidden sm:flex absolute -bottom-2 -right-3 bg-white/95 backdrop-blur-md rounded-2xl px-3.5 py-2 shadow-xl border border-gray-100 items-center gap-2.5"
+                  >
+                    <div className="w-7 h-7 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold">
+                      <Truck size={14} />
                     </div>
                     <div>
-                      <div className="text-[9px] sm:text-[10px] text-gray-500 font-bold uppercase tracking-wider">
+                      <div className="text-[9px] text-gray-500 font-bold uppercase tracking-wider">
                         Doha Express
                       </div>
-                      <div className="font-extrabold text-gray-900 text-xs sm:text-sm tabular-nums">
-                        FREE Delivery
+                      <div className="font-extrabold text-gray-900 text-xs tabular-nums">
+                        Same-Day Delivery
                       </div>
                     </div>
                   </div>

@@ -69,12 +69,18 @@ export function FlashDeals() {
           </div>
 
           {/* Countdown Clock (Dark Glassmorphism) */}
-          <div className="flex items-center gap-2.5 bg-white/10 border border-white/15 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-lg self-start md:self-auto">
+          <div
+            suppressHydrationWarning
+            className="flex items-center gap-2.5 bg-white/10 border border-white/15 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-lg self-start md:self-auto"
+          >
             <Clock size={16} className="text-brand-400" />
             <span className="text-xs font-bold text-gray-300 uppercase tracking-wider mr-1">
               Ends In:
             </span>
-            <div className="flex items-center gap-1 font-mono font-extrabold text-sm text-white">
+            <div
+              suppressHydrationWarning
+              className="flex items-center gap-1 font-mono font-extrabold text-sm text-white"
+            >
               <span className="bg-black/60 text-white px-2 py-1 rounded-lg border border-white/10 shadow-inner">
                 {formatDigit(timeLeft.hours)}
               </span>

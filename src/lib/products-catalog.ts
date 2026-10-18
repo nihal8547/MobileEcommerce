@@ -535,16 +535,20 @@ CATALOG_PRODUCTS["samsung-galaxy-buds3-pro"] = {
   updatedAt: new Date(),
 };
 
-CATALOG_PRODUCTS["iphone-16-pro-max-256gb"] = CATALOG_PRODUCTS["iphone-16-pro-max"];
-CATALOG_PRODUCTS["samsung-galaxy-s25-ultra"] = CATALOG_PRODUCTS["samsung-s25-ultra"];
+const SLUG_ALIASES: Record<string, string> = {
+  "iphone-16-pro-max-256gb": "iphone-16-pro-max",
+  "samsung-galaxy-s25-ultra": "samsung-s25-ultra",
+};
 
 /**
  * Robust product resolver
  */
 export async function getProductBySlug(slug: string): Promise<Product> {
+  const resolvedSlug = SLUG_ALIASES[slug] || slug;
+
   // 1. Direct catalog hit
-  if (CATALOG_PRODUCTS[slug]) {
-    return CATALOG_PRODUCTS[slug];
+  if (CATALOG_PRODUCTS[resolvedSlug]) {
+    return CATALOG_PRODUCTS[resolvedSlug];
   }
 
   // 2. Fallback synthesis for category slugs like 'product-1', 'product-2', etc.

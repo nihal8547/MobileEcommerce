@@ -1,106 +1,127 @@
 import Link from "next/link";
-import { ShieldCheck, ArrowRight } from "lucide-react";
+import { ShieldCheck, ArrowRight, CheckCircle2 } from "lucide-react";
 
 const brands = [
   {
     name: "Apple",
     slug: "apple",
-    tagline: "iPhone, iPad, Watch & Mac",
+    tagline: "iPhone 16 Pro, iPad & Mac",
     warranty: "Official Apple Qatar Warranty",
     logoText: " Apple",
-    bg: "from-zinc-950 via-zinc-900 to-black text-white",
-    accent: "text-zinc-300",
+    bg: "from-neutral-900 via-neutral-950 to-black text-white",
+    border: "border-neutral-800",
+    accent: "text-neutral-300",
+    badge: "Authorized Reseller",
     imageUrl:
-      "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=300&q=80",
+      "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=400&q=80",
   },
   {
     name: "Samsung",
     slug: "samsung",
-    tagline: "Galaxy S25, Z Fold & Buds",
+    tagline: "Galaxy S25 Ultra & Fold6",
     warranty: "Samsung Gulf Official Care",
     logoText: "SAMSUNG",
-    bg: "from-blue-950 via-blue-900 to-slate-950 text-white",
+    bg: "from-slate-900 via-blue-950 to-slate-950 text-white",
+    border: "border-blue-900/40",
     accent: "text-blue-300",
+    badge: "Official Distributor",
     imageUrl:
-      "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=300&q=80",
+      "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=400&q=80",
   },
   {
     name: "Google",
     slug: "google",
-    tagline: "Pixel 9 Series with Gemini AI",
-    warranty: "100% Genuine Sealed Pack",
-    logoText: "Google",
-    bg: "from-emerald-950 via-teal-950 to-slate-950 text-white",
+    tagline: "Pixel 9 Pro with Gemini AI",
+    warranty: "Factory Sealed Pack",
+    logoText: "Google Pixel",
+    bg: "from-zinc-900 via-emerald-950 to-neutral-950 text-white",
+    border: "border-emerald-900/30",
     accent: "text-emerald-300",
+    badge: "Official Partner",
     imageUrl:
-      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=300&q=80",
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=400&q=80",
   },
   {
     name: "Sony",
     slug: "sony",
-    tagline: "WH-1000XM6 & Premium Audio",
+    tagline: "WH-1000XM6 & Hi-Res Audio",
     warranty: "Fifty One East Authorized",
     logoText: "SONY",
-    bg: "from-purple-950 via-indigo-950 to-neutral-950 text-white",
+    bg: "from-stone-900 via-purple-950 to-neutral-950 text-white",
+    border: "border-purple-900/30",
     accent: "text-purple-300",
+    badge: "Authorized Dealer",
     imageUrl:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=300&q=80",
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80",
   },
 ];
 
 export function BrandShowcase() {
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 sm:py-16 bg-white border-t border-gray-100">
       <div className="container-main">
-        <div className="flex items-end justify-between mb-6">
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div>
-            <p className="text-brand-500 text-xs font-extrabold uppercase tracking-wider mb-1">
-              Authorized Brands
-            </p>
-            <h2 className="section-title">Official Brand Partners</h2>
-            <p className="text-gray-500 text-sm mt-1">
-              Buy with confidence — 100% genuine products with official local Qatar service support
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-xs font-bold uppercase tracking-wider mb-2">
+              <CheckCircle2 size={13} className="text-emerald-600" />
+              <span>100% Genuine Qatar Agency Stock</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+              Official Brand Partners
+            </h2>
+            <p className="text-gray-500 text-sm mt-1 max-w-xl">
+              Factory sealed devices with full local manufacturer warranty and rapid Doha delivery.
             </p>
           </div>
           <Link
             href="/category/smartphones"
-            className="text-sm font-semibold text-brand-500 hover:text-brand-600 transition-colors hidden sm:flex items-center gap-1"
+            className="text-sm font-bold text-brand-500 hover:text-brand-600 transition-colors inline-flex items-center gap-1.5 self-start sm:self-auto group"
           >
-            All Brands <ArrowRight size={15} />
+            <span>Explore All Brands</span>
+            <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {/* 4 Brand Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {brands.map((b) => (
             <Link
               key={b.slug}
-              href={`/category/smartphones`}
-              className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br ${b.bg} p-6 flex flex-col justify-between min-h-[190px] shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1`}
+              href="/category/smartphones"
+              className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br ${b.bg} p-6 sm:p-7 flex flex-col justify-between min-h-[220px] shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border ${b.border}`}
             >
-              {/* Background Product Sample Image */}
-              <div className="absolute -right-2 -bottom-2 w-28 h-28 opacity-35 group-hover:opacity-55 group-hover:scale-110 transition-all duration-300 pointer-events-none">
+              {/* Background ambient image glow */}
+              <div className="absolute -right-3 -bottom-3 w-32 h-32 opacity-25 group-hover:opacity-45 group-hover:scale-110 transition-all duration-500 pointer-events-none">
                 <img
                   src={b.imageUrl}
                   alt={b.name}
-                  className="w-full h-full object-contain drop-shadow-md"
+                  className="w-full h-full object-contain drop-shadow-2xl"
                 />
               </div>
 
+              {/* Top: Logo & Agency Badge */}
               <div className="relative z-10">
-                <span className="font-extrabold text-xl sm:text-2xl tracking-tight block mb-1">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[11px] font-bold text-white/70 bg-white/10 px-2.5 py-0.5 rounded-full backdrop-blur-xs">
+                    {b.badge}
+                  </span>
+                </div>
+                <h3 className="font-extrabold text-2xl tracking-tight text-white mb-1.5">
                   {b.logoText}
-                </span>
-                <p className={`text-xs ${b.accent} font-medium leading-snug`}>
+                </h3>
+                <p className={`text-xs ${b.accent} font-medium leading-relaxed`}>
                   {b.tagline}
                 </p>
               </div>
 
-              <div className="relative z-10 pt-4 border-t border-white/10 flex items-center justify-between">
-                <span className="text-[11px] text-white/90 font-medium flex items-center gap-1">
-                  <ShieldCheck size={13} className="text-emerald-400" />
-                  {b.warranty}
+              {/* Bottom: Warranty Guarantee */}
+              <div className="relative z-10 pt-4 mt-6 border-t border-white/10 flex items-center justify-between">
+                <span className="text-[11px] text-white/85 font-medium flex items-center gap-1.5">
+                  <ShieldCheck size={14} className="text-emerald-400 shrink-0" />
+                  <span>{b.warranty}</span>
                 </span>
-                <span className="text-xs text-white font-bold group-hover:translate-x-1 transition-transform">
+                <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-white text-xs group-hover:bg-white group-hover:text-black transition-colors">
                   →
                 </span>
               </div>

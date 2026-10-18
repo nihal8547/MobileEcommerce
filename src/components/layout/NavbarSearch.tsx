@@ -103,7 +103,9 @@ export function NavbarSearch({
       // Ignore
     }
 
-    setProductsList(list);
+    // Ensure unique items by id
+    const uniqueList = Array.from(new Map(list.map((item) => [item.id, item])).values());
+    setProductsList(uniqueList);
   }, []);
 
   // Close dropdown on outside click
@@ -346,7 +348,7 @@ export function NavbarSearch({
 
                   return (
                     <div
-                      key={product.id}
+                      key={`${product.id}-${idx}`}
                       onClick={() => handleSelectProduct(product.slug)}
                       onMouseEnter={() => setSelectedIndex(idx)}
                       className={`flex items-center justify-between p-2.5 sm:p-3 rounded-2xl cursor-pointer transition-colors ${

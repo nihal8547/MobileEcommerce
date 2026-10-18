@@ -29,55 +29,57 @@ const reviews = [
 
 export function QatarCustomerReviews() {
   return (
-    <section className="py-12 bg-surface-secondary border-t border-gray-100">
+    <section className="py-14 sm:py-16 bg-[#fafafa] border-t border-gray-100">
       <div className="container-main">
-        <div className="text-center max-w-xl mx-auto mb-8">
-          <p className="text-brand-500 text-xs font-extrabold uppercase tracking-wider mb-1">
-            Customer Testimonials
-          </p>
-          <h2 className="section-title">Loved by Shoppers Across Qatar</h2>
-          <p className="text-gray-500 text-sm mt-1">
-            Over 15,000 satisfied mobile & gadget orders delivered safely in Doha & beyond
+        <div className="text-center max-w-xl mx-auto mb-10">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-50 text-brand-600 text-xs font-bold uppercase tracking-wider mb-2">
+            <span>Verified Customer Reviews</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+            Trusted Across Qatar
+          </h2>
+          <p className="text-gray-500 text-sm mt-1.5">
+            Over 15,000+ authentic smartphone and gadget deliveries completed in Doha, Lusail &amp; The Pearl.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-5">
           {reviews.map((rev, i) => (
             <div
               key={i}
-              className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-card-hover transition-all duration-300"
+              className="bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-md border border-gray-200/70 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1"
             >
               <div>
-                {/* Rating & Quote */}
+                {/* Rating & Quote Icon */}
                 <div className="flex items-center justify-between mb-4">
-                  <div className="flex gap-1 text-yellow-400">
+                  <div className="flex gap-1 text-amber-400">
                     {Array.from({ length: rev.rating }).map((_, j) => (
                       <Star key={j} size={15} fill="currentColor" />
                     ))}
                   </div>
-                  <Quote size={20} className="text-brand-200" />
+                  <Quote size={20} className="text-gray-200" />
                 </div>
 
                 {/* Feedback */}
-                <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                <p className="text-gray-700 text-sm leading-relaxed mb-6">
                   &ldquo;{rev.text}&rdquo;
                 </p>
               </div>
 
               {/* Author & Product */}
               <div className="pt-4 border-t border-gray-100">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-bold text-gray-900 text-sm">{rev.name}</p>
-                    <p className="text-xs text-gray-400 font-medium">📍 {rev.location}</p>
-                  </div>
-                  <span className="text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full flex items-center gap-1">
-                    <CheckCircle size={11} /> Verified
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="font-bold text-gray-900 text-sm">{rev.name}</span>
+                  <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full flex items-center gap-1 border border-emerald-100">
+                    <CheckCircle size={11} className="text-emerald-600" /> Verified
                   </span>
                 </div>
-                <p className="text-[11px] text-brand-600 font-medium mt-1 truncate">
-                  Purchased: {rev.product}
-                </p>
+                <div className="flex items-center justify-between text-xs text-gray-400">
+                  <span>📍 {rev.location}</span>
+                  <span className="text-[11px] text-brand-600 font-medium truncate max-w-[150px]">
+                    {rev.product}
+                  </span>
+                </div>
               </div>
             </div>
           ))}

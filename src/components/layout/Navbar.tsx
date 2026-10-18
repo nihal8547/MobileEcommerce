@@ -45,29 +45,33 @@ export function Navbar() {
 
       {/* Main navbar */}
       <div className="container-main">
-        <div className="flex items-center gap-4 h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0 mr-4">
-            <div className="w-9 h-9 rounded-xl bg-brand-gradient flex items-center justify-center shadow-sm">
-              <span className="text-white font-bold text-lg leading-none">M</span>
-            </div>
-            <div className="hidden sm:block">
-              <div className="font-bold text-gray-900 text-lg leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
-                MobileShop
+        <div className="flex items-center justify-between gap-3 lg:gap-6 h-16">
+          {/* Logo (Left) */}
+          <div className="flex items-center flex-shrink-0">
+            <Link href="/" className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-xl bg-brand-gradient flex items-center justify-center shadow-sm">
+                <span className="text-white font-bold text-lg leading-none">M</span>
               </div>
-              <div className="text-[10px] text-brand-500 font-semibold uppercase tracking-wider leading-none">
-                Qatar
+              <div className="hidden sm:block">
+                <div className="font-bold text-gray-900 text-lg leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
+                  MobileShop
+                </div>
+                <div className="text-[10px] text-brand-500 font-semibold uppercase tracking-wider leading-none">
+                  Qatar
+                </div>
               </div>
-            </div>
-          </Link>
-
-          {/* Search bar with Live Instant Suggestions */}
-          <div className="flex-1 max-w-2xl hidden md:block">
-            <NavbarSearch />
+            </Link>
           </div>
 
-          {/* Actions */}
-          <div className="flex items-center gap-1 ml-auto">
+          {/* Search bar with Live Instant Suggestions (Centered) */}
+          <div className="flex-1 max-w-xl lg:max-w-2xl mx-auto px-2 lg:px-6 hidden md:flex justify-center">
+            <div className="w-full">
+              <NavbarSearch />
+            </div>
+          </div>
+
+          {/* Actions (Right) */}
+          <div className="flex items-center gap-1 flex-shrink-0">
             <button
               className="md:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors"
               onClick={() => setSearchOpen(!searchOpen)}
@@ -91,7 +95,7 @@ export function Navbar() {
             </Link>
             <Link
               href="/cart"
-              className="flex items-center gap-2 px-3 py-2 bg-brand-500 hover:bg-brand-600 text-white rounded-xl transition-colors relative"
+              className="flex items-center gap-2 px-3 py-2 bg-brand-500 hover:bg-brand-600 text-white rounded-xl transition-colors relative shadow-xs"
               aria-label="Cart"
             >
               <ShoppingCart size={18} />
@@ -111,7 +115,7 @@ export function Navbar() {
 
         {/* Mobile search */}
         {searchOpen && (
-          <div className="md:hidden pb-3">
+          <div className="md:hidden pb-3 max-w-lg mx-auto">
             <NavbarSearch isMobile onCloseMobile={() => setSearchOpen(false)} />
           </div>
         )}

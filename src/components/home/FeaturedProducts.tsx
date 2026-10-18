@@ -18,6 +18,11 @@ export function FeaturedProducts({
   subtitle = "Handpicked top sellers available in Qatar — ships from Doha",
   viewAllLink = "/category/smartphones",
 }: FeaturedProductsProps) {
+  // Ensure products list contains unique items by id to prevent duplicate keys
+  const uniqueProducts = Array.from(
+    new Map(products.map((p) => [p.id, p])).values()
+  );
+
   return (
     <section className="py-10 bg-white">
       <div className="container-main">
@@ -39,7 +44,7 @@ export function FeaturedProducts({
 
         {/* Increased card width with 4 columns on large screens instead of 6 */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {products.map((product) => (
+          {uniqueProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

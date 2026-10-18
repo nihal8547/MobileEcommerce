@@ -111,14 +111,13 @@ export function Footer() {
             </ul>
 
             <div className="mt-6">
-              <h4 className="font-bold text-white mb-3 text-sm uppercase tracking-wider">We Accept</h4>
+              <h4 className="font-bold text-white mb-3 text-xs uppercase tracking-wider">Accepted Payments in Qatar</h4>
               <div className="flex flex-wrap gap-2">
-                {["VISA", "MC", "AMEX", "mada"].map((card) => (
-                  <span key={card} className="px-2.5 py-1 bg-gray-800 border border-gray-700 rounded text-xs font-bold text-gray-300">
+                {["Apple Pay", "VISA", "Mastercard", "AMEX", "Cash on Delivery"].map((card) => (
+                  <span key={card} className="px-2.5 py-1 bg-gray-800/80 border border-gray-700/80 rounded-lg text-xs font-semibold text-gray-300">
                     {card}
                   </span>
                 ))}
-                <span className="px-2.5 py-1 bg-gray-800 border border-gray-700 rounded text-xs font-bold text-gray-300">COD</span>
               </div>
             </div>
           </div>
@@ -126,16 +125,16 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-gray-800/80">
         <div className="container-main py-4 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-xs text-gray-500">
-            © 2024 MobileShop Qatar. All rights reserved. Doha, State of Qatar
+          <p suppressHydrationWarning className="text-xs text-gray-500">
+            © {new Date().getFullYear()} MobileShop Qatar W.L.L. All rights reserved. Doha, State of Qatar.
           </p>
           <a
             href="https://wa.me/97466000000?text=Hi!%20I%20need%20help%20with%20my%20order."
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-xs text-[#25D366] hover:text-[#20ba5a] transition-colors"
+            className="flex items-center gap-2 text-xs text-[#25D366] hover:text-[#20ba5a] font-medium transition-colors"
           >
             <MessageCircle size={14} />
             Chat on WhatsApp
