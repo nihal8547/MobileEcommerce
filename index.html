@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MobileShop — Premium Mobile E-Commerce Store</title>
+  <meta name="description" content="Shop the latest mobiles, gadgets, and accessories. Best prices, fast delivery, and exclusive deals." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- PAGE LOADER -->
+<div class="page-loader" id="pageLoader">
+  <div class="loader-content">
+    <div class="loader-logo">
+      <span style="background:linear-gradient(135deg,#6C63FF,#FF6584);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">📱 MobileShop</span>
+    </div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+    <p style="margin-top:1rem;color:var(--text-muted);font-size:0.85rem;">Loading your premium store...</p>
+  </div>
+</div>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement-bar">
+  🎉 Mega Sale! Up to 60% OFF on all Smartphones — Limited Time Only!
+  <a href="pages/products.html">Shop Now →</a>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="container">
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">📱</div>
+        Mobile<span>Shop</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="pages/products.html">Products</a></li>
+        <li><a href="pages/categories.html">Categories</a></li>
+        <li><a href="pages/offers.html">Offers</a></li>
+        <li><a href="pages/about.html">About</a></li>
+        <li><a href="pages/contact.html">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="search-bar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" placeholder="Search products..." id="searchInput" />
+        </div>
+        <button class="cart-btn" title="Open Cart">
+          🛒
+          <span class="cart-count" style="display:none;">0</span>
+        </button>
+        <a href="pages/login.html" class="btn btn-primary btn-sm">Sign In</a>
+        <button class="menu-toggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-grid">
+
+      <!-- LEFT: CONTENT -->
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span>🔥</span> New Arrivals 2024 — Just Dropped
+        </div>
+
+        <h1 class="hero-title">
+          <span class="line1">Discover The</span>
+          <span class="line2">Future of Mobile</span>
+          <span class="line3">Premium Smartphones & Accessories</span>
+        </h1>
+
+        <p class="hero-desc">
+          Explore 10,000+ products from top brands like Apple, Samsung, OnePlus, and more.
+          Best prices guaranteed with fast delivery and 30-day easy returns.
+        </p>
+
+        <div class="hero-actions">
+          <a href="pages/products.html" class="btn btn-primary btn-lg">
+            🛍️ Shop Now
+          </a>
+          <a href="pages/offers.html" class="btn btn-outline btn-lg">
+            🎁 View Deals
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-value">10K+</div>
+            <div class="stat-label">Products</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">50K+</div>
+            <div class="stat-label">Happy Customers</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">4.9★</div>
+            <div class="stat-label">Rating</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">1-Day</div>
+            <div class="stat-label">Delivery</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: VISUAL -->
+      <div class="hero-visual">
+        <div class="orbit-ring orbit-ring-1"><div class="orbit-dot"></div></div>
+        <div class="orbit-ring orbit-ring-2"></div>
+
+        <div class="phone-mockup">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="phone-screen-header">
+                <span style="font-size:0.6rem;color:white;font-weight:700;">📱 MobileShop</span>
+                <span style="font-size:0.55rem;color:rgba(255,255,255,0.7);">🛒 3 items</span>
+              </div>
+              <!-- Hero Banner in phone -->
+              <div style="padding:0.5rem;background:linear-gradient(135deg,rgba(108,99,255,0.2),rgba(255,101,132,0.2));text-align:center;font-size:0.6rem;color:var(--primary-light);border-bottom:1px solid var(--border-light);">
+                🔥 Flash Sale — 60% OFF Today
+              </div>
+              <div class="phone-product-grid">
+                <div class="phone-product-card">
+                  <div class="phone-product-img" style="background:linear-gradient(135deg,rgba(108,99,255,0.1),rgba(255,101,132,0.1));">📱</div>
+                  <div class="phone-product-name">iPhone 15 Pro</div>
+                  <div class="phone-product-price">₹1,29,900</div>
+                </div>
+                <div class="phone-product-card">
+                  <div class="phone-product-img" style="background:linear-gradient(135deg,rgba(67,233,123,0.1),rgba(56,249,215,0.1));">🤖</div>
+                  <div class="phone-product-name">Galaxy S24</div>
+                  <div class="phone-product-price">₹89,999</div>
+                </div>
+                <div class="phone-product-card">
+                  <div class="phone-product-img" style="background:linear-gradient(135deg,rgba(247,151,30,0.1),rgba(255,210,0,0.1));">🎧</div>
+                  <div class="phone-product-name">AirPods Pro</div>
+                  <div class="phone-product-price">₹24,900</div>
+                </div>
+                <div class="phone-product-card">
+                  <div class="phone-product-img" style="background:linear-gradient(135deg,rgba(255,101,132,0.1),rgba(108,99,255,0.1));">⌚</div>
+                  <div class="phone-product-name">Smart Watch</div>
+                  <div class="phone-product-price">₹15,999</div>
+                </div>
+              </div>
+              <div style="padding:0.5rem;text-align:center;">
+                <div style="background:linear-gradient(135deg,#6C63FF,#FF6584);border-radius:20px;padding:0.35rem 0.75rem;font-size:0.55rem;font-weight:700;color:white;display:inline-block;">
+                  🛒 Add to Cart
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating Cards -->
+          <div class="floating-card floating-card-1">
+            <div class="label">🔥 Trending</div>
+            <div class="value">iPhone 15 Pro</div>
+            <div style="font-size:0.72rem;color:#43E97B;font-weight:600;margin-top:0.2rem;">₹1,29,900 →</div>
+          </div>
+          <div class="floating-card floating-card-2">
+            <div class="label">✅ Just Delivered</div>
+            <div class="value">Samsung Galaxy</div>
+            <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.2rem;">⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE STRIP -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marqueeTrack">
+    <div class="marquee-item"><span>🚀</span> Free Delivery on orders above ₹499</div>
+    <div class="marquee-item"><span>🔄</span> 30-Day Easy Returns</div>
+    <div class="marquee-item"><span>✅</span> 100% Authentic Products</div>
+    <div class="marquee-item"><span>💳</span> EMI Available on all orders</div>
+    <div class="marquee-item"><span>🔒</span> Secure Payments</div>
+    <div class="marquee-item"><span>📦</span> Same Day Dispatch</div>
+    <div class="marquee-item"><span>⭐</span> 50,000+ 5-Star Reviews</div>
+    <div class="marquee-item"><span>🎁</span> Exclusive Member Offers</div>
+    <div class="marquee-item"><span>🚀</span> Free Delivery on orders above ₹499</div>
+    <div class="marquee-item"><span>🔄</span> 30-Day Easy Returns</div>
+    <div class="marquee-item"><span>✅</span> 100% Authentic Products</div>
+    <div class="marquee-item"><span>💳</span> EMI Available on all orders</div>
+    <div class="marquee-item"><span>🔒</span> Secure Payments</div>
+    <div class="marquee-item"><span>📦</span> Same Day Dispatch</div>
+    <div class="marquee-item"><span>⭐</span> 50,000+ 5-Star Reviews</div>
+    <div class="marquee-item"><span>🎁</span> Exclusive Member Offers</div>
+  </div>
+</div>
+
+<!-- ===== BANNER SLIDER ===== -->
+<section class="banner-section">
+  <div class="container">
+    <div class="banner-slider" id="bannerSlider">
+      <div class="banner-track">
+
+        <!-- Slide 1 -->
+        <div class="banner-slide banner-slide-1">
+          <div class="banner-content">
+            <div class="banner-tag">⚡ Flash Sale</div>
+            <h2 class="banner-title">iPhone 15 Pro Max<br/>Starting ₹1,29,900</h2>
+            <p class="banner-desc">The most powerful iPhone ever with titanium design and A17 Pro chip. Get yours today!</p>
+            <a href="pages/products.html" class="btn btn-primary">Shop iPhones</a>
+          </div>
+          <div class="banner-visual">
+            <div class="banner-product-display">📱</div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="banner-slide banner-slide-2">
+          <div class="banner-content">
+            <div class="banner-tag">🔥 Hot Deal</div>
+            <h2 class="banner-title">Samsung Galaxy S24<br/>40% OFF Today!</h2>
+            <p class="banner-desc">AI-powered camera, stunning display, and all-day battery. Limited units available!</p>
+            <a href="pages/products.html" class="btn btn-accent">Grab Deal</a>
+          </div>
+          <div class="banner-visual">
+            <div class="banner-product-display">🤖</div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="banner-slide banner-slide-3">
+          <div class="banner-content">
+            <div class="banner-tag">🎧 New Arrival</div>
+            <h2 class="banner-title">Premium Earbuds<br/>& Smart Watches</h2>
+            <p class="banner-desc">Upgrade your audio experience. Noise cancellation, 30hr battery, wireless charging.</p>
+            <a href="pages/categories.html" class="btn btn-outline" style="border-color:rgba(255,255,255,0.4);color:white;">Explore Gadgets</a>
+          </div>
+          <div class="banner-visual">
+            <div class="banner-product-display">🎧</div>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="banner-btn-prev">‹</button>
+      <button class="banner-btn-next">›</button>
+
+      <div class="banner-dots">
+        <div class="banner-dot active"></div>
+        <div class="banner-dot"></div>
+        <div class="banner-dot"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OFFERS STRIP ===== -->
+<div class="container">
+  <div class="offers-strip">
+    <div class="offer-card">
+      <div class="offer-icon offer-icon-1">🚀</div>
+      <div class="offer-info">
+        <div class="offer-title">Free Delivery</div>
+        <div class="offer-desc">On orders above ₹499. Same-day dispatch available.</div>
+      </div>
+    </div>
+    <div class="offer-card">
+      <div class="offer-icon offer-icon-2">🔄</div>
+      <div class="offer-info">
+        <div class="offer-title">30-Day Returns</div>
+        <div class="offer-desc">Hassle-free returns. No questions asked policy.</div>
+      </div>
+    </div>
+    <div class="offer-card">
+      <div class="offer-icon offer-icon-3">💳</div>
+      <div class="offer-info">
+        <div class="offer-title">EMI Available</div>
+        <div class="offer-desc">Easy 3, 6, 12 month EMI on all major cards.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CATEGORIES ===== -->
+<section class="section categories-section" id="categories">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-primary" style="margin-bottom:0.75rem;">Browse</span>
+      <h2 class="section-title">Shop by <span class="gradient-text">Category</span></h2>
+      <p class="section-sub">Find exactly what you're looking for across our wide range of categories</p>
+    </div>
+    <div class="categories-grid">
+      <div class="category-card" data-category="smartphones" onclick="MobileShop.selectCategory('smartphones')">
+        <span class="category-icon">📱</span>
+        <div class="category-name">Smartphones</div>
+        <div class="category-count">2,480 products</div>
+      </div>
+      <div class="category-card" data-category="tablets" onclick="MobileShop.selectCategory('tablets')">
+        <span class="category-icon">📟</span>
+        <div class="category-name">Tablets</div>
+        <div class="category-count">840 products</div>
+      </div>
+      <div class="category-card" data-category="earbuds" onclick="MobileShop.selectCategory('earbuds')">
+        <span class="category-icon">🎧</span>
+        <div class="category-name">Earbuds</div>
+        <div class="category-count">1,230 products</div>
+      </div>
+      <div class="category-card" data-category="watches" onclick="MobileShop.selectCategory('watches')">
+        <span class="category-icon">⌚</span>
+        <div class="category-name">Smart Watches</div>
+        <div class="category-count">560 products</div>
+      </div>
+      <div class="category-card" data-category="chargers" onclick="MobileShop.selectCategory('chargers')">
+        <span class="category-icon">🔋</span>
+        <div class="category-name">Chargers</div>
+        <div class="category-count">920 products</div>
+      </div>
+      <div class="category-card" data-category="cases" onclick="MobileShop.selectCategory('cases')">
+        <span class="category-icon">🛡️</span>
+        <div class="category-name">Cases & Covers</div>
+        <div class="category-count">3,100 products</div>
+      </div>
+      <div class="category-card" data-category="speakers" onclick="MobileShop.selectCategory('speakers')">
+        <span class="category-icon">🔊</span>
+        <div class="category-name">Speakers</div>
+        <div class="category-count">450 products</div>
+      </div>
+      <div class="category-card" data-category="cameras" onclick="MobileShop.selectCategory('cameras')">
+        <span class="category-icon">📷</span>
+        <div class="category-name">Cameras</div>
+        <div class="category-count">380 products</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FLASH DEALS ===== -->
+<section class="section flash-deals-section" id="deals">
+  <div class="container">
+    <div class="flash-deals-header">
+      <div>
+        <span class="badge badge-danger" style="margin-bottom:0.5rem;">Limited Time</span>
+        <h2 class="section-title">⚡ Flash <span class="gradient-text">Deals</span></h2>
+      </div>
+      <div class="flash-timer">
+        ⏱ Ends in: <span class="flash-countdown">00:00:00</span>
+      </div>
+    </div>
+
+    <div class="deals-scroll">
+
+      <div class="deal-card">
+        <div class="deal-image">
+          📱
+          <div class="deal-off-badge">55% OFF</div>
+        </div>
+        <div class="deal-progress"><div class="deal-progress-bar" style="width:72%"></div></div>
+        <div class="deal-progress-text">72% Sold — Only 28 left!</div>
+        <div class="deal-info">
+          <div class="deal-name">OnePlus 12R</div>
+          <div class="deal-price">₹29,999 <span class="deal-price-orig">₹44,999</span></div>
+        </div>
+      </div>
+
+      <div class="deal-card">
+        <div class="deal-image">
+          🎧
+          <div class="deal-off-badge">40% OFF</div>
+        </div>
+        <div class="deal-progress"><div class="deal-progress-bar" style="width:58%"></div></div>
+        <div class="deal-progress-text">58% Sold — Only 42 left!</div>
+        <div class="deal-info">
+          <div class="deal-name">Sony WH-1000XM5</div>
+          <div class="deal-price">₹18,990 <span class="deal-price-orig">₹29,990</span></div>
+        </div>
+      </div>
+
+      <div class="deal-card">
+        <div class="deal-image">
+          ⌚
+          <div class="deal-off-badge">35% OFF</div>
+        </div>
+        <div class="deal-progress"><div class="deal-progress-bar" style="width:45%"></div></div>
+        <div class="deal-progress-text">45% Sold — Only 55 left!</div>
+        <div class="deal-info">
+          <div class="deal-name">Apple Watch SE 2</div>
+          <div class="deal-price">₹25,900 <span class="deal-price-orig">₹32,900</span></div>
+        </div>
+      </div>
+
+      <div class="deal-card">
+        <div class="deal-image">
+          💻
+          <div class="deal-off-badge">30% OFF</div>
+        </div>
+        <div class="deal-progress"><div class="deal-progress-bar" style="width:33%"></div></div>
+        <div class="deal-progress-text">33% Sold — Only 67 left!</div>
+        <div class="deal-info">
+          <div class="deal-name">iPad Air M2</div>
+          <div class="deal-price">₹59,900 <span class="deal-price-orig">₹79,900</span></div>
+        </div>
+      </div>
+
+      <div class="deal-card">
+        <div class="deal-image">
+          🔋
+          <div class="deal-off-badge">60% OFF</div>
+        </div>
+        <div class="deal-progress"><div class="deal-progress-bar" style="width:88%"></div></div>
+        <div class="deal-progress-text">88% Sold — Only 12 left!</div>
+        <div class="deal-info">
+          <div class="deal-name">Anker 30W Charger</div>
+          <div class="deal-price">₹799 <span class="deal-price-orig">₹1,999</span></div>
+        </div>
+      </div>
+
+      <div class="deal-card">
+        <div class="deal-image">
+          🎮
+          <div class="deal-off-badge">45% OFF</div>
+        </div>
+        <div class="deal-progress"><div class="deal-progress-bar" style="width:62%"></div></div>
+        <div class="deal-progress-text">62% Sold — Only 38 left!</div>
+        <div class="deal-info">
+          <div class="deal-name">Gaming Earbuds Pro</div>
+          <div class="deal-price">₹2,499 <span class="deal-price-orig">₹4,499</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURED PRODUCTS ===== -->
+<section class="section products-section" id="products">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-primary" style="margin-bottom:0.75rem;">Featured</span>
+      <h2 class="section-title">Top <span class="gradient-text">Products</span></h2>
+      <p class="section-sub">Handpicked products from the best brands at unbeatable prices</p>
+    </div>
+
+    <div class="products-filter">
+      <button class="filter-btn active" data-filter="all">All Products</button>
+      <button class="filter-btn" data-filter="smartphones">📱 Smartphones</button>
+      <button class="filter-btn" data-filter="earbuds">🎧 Earbuds</button>
+      <button class="filter-btn" data-filter="watches">⌚ Watches</button>
+      <button class="filter-btn" data-filter="tablets">📟 Tablets</button>
+      <button class="filter-btn" data-filter="accessories">🔌 Accessories</button>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- Product 1 -->
+      <div class="product-card"
+        data-product-id="p001" data-product-name="iPhone 15 Pro" data-product-price="129900"
+        data-product-emoji="📱" data-product-category="smartphones" data-category="smartphones"
+        onclick="window.location.href='pages/product-detail.html?id=p001'">
+        <div class="product-image-wrap">
+          <div class="product-emoji">📱</div>
+          <div class="product-badges">
+            <span class="badge badge-danger">HOT</span>
+            <span class="badge badge-warning">NEW</span>
+          </div>
+          <div class="product-actions">
+            <button class="action-btn" title="Add to Wishlist" onclick="event.stopPropagation();MobileShop.showToast('Added to wishlist!','info')">♡</button>
+            <button class="action-btn" title="Quick View" onclick="event.stopPropagation()">👁</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">Smartphones</div>
+          <div class="product-name">Apple iPhone 15 Pro — Titanium</div>
+          <div class="product-rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">(2,847)</span>
+          </div>
+          <div class="product-price-row">
+            <div class="product-price">
+              <span class="price-current">₹1,29,900</span>
+              <span class="price-original">₹1,49,900</span>
+              <span class="price-discount">13% off</span>
+            </div>
+            <button class="add-to-cart-btn" data-add-cart title="Add to Cart" onclick="event.stopPropagation()">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card"
+        data-product-id="p002" data-product-name="Samsung Galaxy S24 Ultra" data-product-price="134999"
+        data-product-emoji="🤖" data-product-category="smartphones" data-category="smartphones"
+        onclick="window.location.href='pages/product-detail.html?id=p002'">
+        <div class="product-image-wrap">
+          <div class="product-emoji">🤖</div>
+          <div class="product-badges">
+            <span class="badge badge-primary">TRENDING</span>
+          </div>
+          <div class="product-actions">
+            <button class="action-btn" title="Add to Wishlist" onclick="event.stopPropagation();MobileShop.showToast('Added to wishlist!','info')">♡</button>
+            <button class="action-btn" title="Quick View" onclick="event.stopPropagation()">👁</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">Smartphones</div>
+          <div class="product-name">Samsung Galaxy S24 Ultra 256GB</div>
+          <div class="product-rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">(1,924)</span>
+          </div>
+          <div class="product-price-row">
+            <div class="product-price">
+              <span class="price-current">₹1,34,999</span>
+              <span class="price-original">₹1,59,999</span>
+              <span class="price-discount">16% off</span>
+            </div>
+            <button class="add-to-cart-btn" data-add-cart title="Add to Cart" onclick="event.stopPropagation()">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card"
+        data-product-id="p003" data-product-name="AirPods Pro 2nd Gen" data-product-price="24900"
+        data-product-emoji="🎧" data-product-category="earbuds" data-category="earbuds"
+        onclick="window.location.href='pages/product-detail.html?id=p003'">
+        <div class="product-image-wrap">
+          <div class="product-emoji">🎧</div>
+          <div class="product-badges">
+            <span class="badge badge-success">BESTSELLER</span>
+          </div>
+          <div class="product-actions">
+            <button class="action-btn" title="Add to Wishlist" onclick="event.stopPropagation();MobileShop.showToast('Added to wishlist!','info')">♡</button>
+            <button class="action-btn" title="Quick View" onclick="event.stopPropagation()">👁</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">Earbuds</div>
+          <div class="product-name">Apple AirPods Pro (2nd Generation)</div>
+          <div class="product-rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">(5,231)</span>
+          </div>
+          <div class="product-price-row">
+            <div class="product-price">
+              <span class="price-current">₹24,900</span>
+              <span class="price-original">₹26,900</span>
+              <span class="price-discount">7% off</span>
+            </div>
+            <button class="add-to-cart-btn" data-add-cart title="Add to Cart" onclick="event.stopPropagation()">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card"
+        data-product-id="p004" data-product-name="Apple Watch Series 9" data-product-price="41900"
+        data-product-emoji="⌚" data-product-category="watches" data-category="watches"
+        onclick="window.location.href='pages/product-detail.html?id=p004'">
+        <div class="product-image-wrap">
+          <div class="product-emoji">⌚</div>
+          <div class="product-badges">
+            <span class="badge badge-warning">NEW</span>
+          </div>
+          <div class="product-actions">
+            <button class="action-btn" title="Add to Wishlist" onclick="event.stopPropagation();MobileShop.showToast('Added to wishlist!','info')">♡</button>
+            <button class="action-btn" onclick="event.stopPropagation()">👁</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">Smart Watches</div>
+          <div class="product-name">Apple Watch Series 9 GPS 45mm</div>
+          <div class="product-rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">(3,102)</span>
+          </div>
+          <div class="product-price-row">
+            <div class="product-price">
+              <span class="price-current">₹41,900</span>
+              <span class="price-original">₹44,900</span>
+              <span class="price-discount">7% off</span>
+            </div>
+            <button class="add-to-cart-btn" data-add-cart title="Add to Cart" onclick="event.stopPropagation()">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card"
+        data-product-id="p005" data-product-name="OnePlus 12" data-product-price="64999"
+        data-product-emoji="🔥" data-product-category="smartphones" data-category="smartphones"
+        onclick="window.location.href='pages/product-detail.html?id=p005'">
+        <div class="product-image-wrap">
+          <div class="product-emoji">🔥</div>
+          <div class="product-badges">
+            <span class="badge badge-danger">HOT</span>
+          </div>
+          <div class="product-actions">
+            <button class="action-btn" onclick="event.stopPropagation();MobileShop.showToast('Added to wishlist!','info')">♡</button>
+            <button class="action-btn" onclick="event.stopPropagation()">👁</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">Smartphones</div>
+          <div class="product-name">OnePlus 12 5G 256GB</div>
+          <div class="product-rating">
+            <span class="stars">★★★★☆</span>
+            <span class="rating-count">(987)</span>
+          </div>
+          <div class="product-price-row">
+            <div class="product-price">
+              <span class="price-current">₹64,999</span>
+              <span class="price-original">₹69,999</span>
+              <span class="price-discount">7% off</span>
+            </div>
+            <button class="add-to-cart-btn" data-add-cart onclick="event.stopPropagation()">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card"
+        data-product-id="p006" data-product-name="iPad Air M2" data-product-price="59900"
+        data-product-emoji="💻" data-product-category="tablets" data-category="tablets"
+        onclick="window.location.href='pages/product-detail.html?id=p006'">
+        <div class="product-image-wrap">
+          <div class="product-emoji">💻</div>
+          <div class="product-badges">
+            <span class="badge badge-primary">FEATURED</span>
+          </div>
+          <div class="product-actions">
+            <button class="action-btn" onclick="event.stopPropagation();MobileShop.showToast('Added to wishlist!','info')">♡</button>
+            <button class="action-btn" onclick="event.stopPropagation()">👁</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">Tablets</div>
+          <div class="product-name">Apple iPad Air M2 11-inch Wi-Fi</div>
+          <div class="product-rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">(2,415)</span>
+          </div>
+          <div class="product-price-row">
+            <div class="product-price">
+              <span class="price-current">₹59,900</span>
+              <span class="price-original">₹64,900</span>
+              <span class="price-discount">8% off</span>
+            </div>
+            <button class="add-to-cart-btn" data-add-cart onclick="event.stopPropagation()">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 7 -->
+      <div class="product-card"
+        data-product-id="p007" data-product-name="Anker 30W GaN Charger" data-product-price="1299"
+        data-product-emoji="🔌" data-product-category="accessories" data-category="accessories"
+        onclick="window.location.href='pages/product-detail.html?id=p007'">
+        <div class="product-image-wrap">
+          <div class="product-emoji">🔌</div>
+          <div class="product-badges">
+            <span class="badge badge-success">VALUE</span>
+          </div>
+          <div class="product-actions">
+            <button class="action-btn" onclick="event.stopPropagation();MobileShop.showToast('Added to wishlist!','info')">♡</button>
+            <button class="action-btn" onclick="event.stopPropagation()">👁</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">Accessories</div>
+          <div class="product-name">Anker 30W GaN USB-C Charger</div>
+          <div class="product-rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">(8,210)</span>
+          </div>
+          <div class="product-price-row">
+            <div class="product-price">
+              <span class="price-current">₹1,299</span>
+              <span class="price-original">₹1,999</span>
+              <span class="price-discount">35% off</span>
+            </div>
+            <button class="add-to-cart-btn" data-add-cart onclick="event.stopPropagation()">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 8 -->
+      <div class="product-card"
+        data-product-id="p008" data-product-name="Sony WH-1000XM5" data-product-price="18990"
+        data-product-emoji="🎵" data-product-category="earbuds" data-category="earbuds"
+        onclick="window.location.href='pages/product-detail.html?id=p008'">
+        <div class="product-image-wrap">
+          <div class="product-emoji">🎵</div>
+          <div class="product-badges">
+            <span class="badge badge-danger">DEAL</span>
+          </div>
+          <div class="product-actions">
+            <button class="action-btn" onclick="event.stopPropagation();MobileShop.showToast('Added to wishlist!','info')">♡</button>
+            <button class="action-btn" onclick="event.stopPropagation()">👁</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">Earbuds</div>
+          <div class="product-name">Sony WH-1000XM5 Wireless Headphones</div>
+          <div class="product-rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">(4,562)</span>
+          </div>
+          <div class="product-price-row">
+            <div class="product-price">
+              <span class="price-current">₹18,990</span>
+              <span class="price-original">₹29,990</span>
+              <span class="price-discount">37% off</span>
+            </div>
+            <button class="add-to-cart-btn" data-add-cart onclick="event.stopPropagation()">+</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:3rem;">
+      <a href="pages/products.html" class="btn btn-outline btn-lg">View All Products →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURED PRODUCT BANNER ===== -->
+<div class="container">
+  <div class="featured-banner">
+    <div class="featured-banner-inner">
+      <div class="featured-banner-left">
+        <span class="badge badge-danger" style="margin-bottom:1rem;">⚡ Limited Offer</span>
+        <h2 style="font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:0.75rem;">
+          iPhone 15 Pro Max<br/>
+          <span class="gradient-text">Save ₹20,000 Today!</span>
+        </h2>
+        <p style="color:var(--text-secondary);margin-bottom:1.5rem;font-size:0.9rem;">
+          Titanium design • A17 Pro chip • 48MP ProRAW camera • USB 3 speed.
+          The ultimate iPhone experience at an unbeatable price.
+        </p>
+        <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+          <div>
+            <div style="font-size:2rem;font-weight:900;">₹1,29,900</div>
+            <div style="font-size:0.85rem;color:var(--text-muted);text-decoration:line-through;">₹1,49,900</div>
+          </div>
+          <a href="pages/product-detail.html?id=p001" class="btn btn-primary">Buy Now →</a>
+        </div>
+        <div class="featured-timer">
+          <div class="timer-unit">
+            <span class="timer-value" id="timerH">05</span>
+            <span class="timer-label">Hrs</span>
+          </div>
+          <div style="font-size:1.4rem;font-weight:700;color:var(--primary);align-self:center;">:</div>
+          <div class="timer-unit">
+            <span class="timer-value" id="timerM">42</span>
+            <span class="timer-label">Min</span>
+          </div>
+          <div style="font-size:1.4rem;font-weight:700;color:var(--primary);align-self:center;">:</div>
+          <div class="timer-unit">
+            <span class="timer-value" id="timerS">18</span>
+            <span class="timer-label">Sec</span>
+          </div>
+        </div>
+      </div>
+      <div class="featured-banner-right" style="font-size:8rem;position:relative;">
+        📱
+        <div style="position:absolute;top:1rem;right:1rem;background:var(--secondary);color:white;font-size:0.8rem;font-weight:700;padding:0.3rem 0.7rem;border-radius:8px;">13% OFF</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== WHATSAPP SECTION ===== -->
+<section class="whatsapp-section" id="whatsapp">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-success" style="margin-bottom:0.75rem;">Direct Connect</span>
+      <h2 class="section-title">Chat on <span class="gradient-text">WhatsApp</span></h2>
+      <p class="section-sub">Get instant support, order updates, and exclusive deals directly on WhatsApp</p>
+    </div>
+    <div class="whatsapp-card">
+      <div class="whatsapp-info">
+        <div class="whatsapp-icon">💬</div>
+        <div class="whatsapp-text">
+          <h3>Enable WhatsApp Support</h3>
+          <p>Get instant order updates, track deliveries, and chat with our support team 24/7 on WhatsApp.</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+        <div class="toggle-group">
+          <span class="toggle-label">WhatsApp Chat</span>
+          <label class="toggle-switch">
+            <input type="checkbox" class="whatsapp-toggle-input" checked />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <button class="whatsapp-connect-btn">
+          💬 Open WhatsApp
+        </button>
+      </div>
+    </div>
+
+    <!-- WhatsApp Features Grid -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:1.5rem;">
+      <div style="background:var(--gradient-card);border:1px solid var(--border-light);border-radius:var(--radius);padding:1.25rem;display:flex;align-items:center;gap:1rem;">
+        <span style="font-size:1.5rem;">📦</span>
+        <div>
+          <div style="font-size:0.875rem;font-weight:600;margin-bottom:0.2rem;">Order Tracking</div>
+          <div style="font-size:0.78rem;color:var(--text-secondary);">Real-time delivery updates</div>
+        </div>
+      </div>
+      <div style="background:var(--gradient-card);border:1px solid var(--border-light);border-radius:var(--radius);padding:1.25rem;display:flex;align-items:center;gap:1rem;">
+        <span style="font-size:1.5rem;">🎁</span>
+        <div>
+          <div style="font-size:0.875rem;font-weight:600;margin-bottom:0.2rem;">Exclusive Deals</div>
+          <div style="font-size:0.78rem;color:var(--text-secondary);">Members-only WhatsApp offers</div>
+        </div>
+      </div>
+      <div style="background:var(--gradient-card);border:1px solid var(--border-light);border-radius:var(--radius);padding:1.25rem;display:flex;align-items:center;gap:1rem;">
+        <span style="font-size:1.5rem;">🤝</span>
+        <div>
+          <div style="font-size:0.875rem;font-weight:600;margin-bottom:0.2rem;">24/7 Support</div>
+          <div style="font-size:0.78rem;color:var(--text-secondary);">Instant help, anytime</div>
+        </div>
+      </div>
+      <div style="background:var(--gradient-card);border:1px solid var(--border-light);border-radius:var(--radius);padding:1.25rem;display:flex;align-items:center;gap:1rem;">
+        <span style="font-size:1.5rem;">💰</span>
+        <div>
+          <div style="font-size:0.875rem;font-weight:600;margin-bottom:0.2rem;">Price Alerts</div>
+          <div style="font-size:0.78rem;color:var(--text-secondary);">Get notified when price drops</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DELIVERY & PAYMENT OPTIONS ===== -->
+<section class="section delivery-section" id="delivery">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-primary" style="margin-bottom:0.75rem;">Flexible</span>
+      <h2 class="section-title">Delivery & <span class="gradient-text">Payment</span></h2>
+      <p class="section-sub">Choose your preferred delivery and payment method for a seamless experience</p>
+    </div>
+    <div class="delivery-grid">
+
+      <!-- DELIVERY OPTIONS -->
+      <div class="delivery-card">
+        <h3>🚚 Delivery Options</h3>
+        <div class="delivery-options">
+
+          <label class="delivery-option selected">
+            <input type="radio" name="delivery" value="standard" checked />
+            <div class="delivery-radio-visual"><div class="delivery-radio-dot"></div></div>
+            <span class="delivery-option-icon">📦</span>
+            <div class="delivery-option-info">
+              <div class="delivery-option-name">Standard Delivery</div>
+              <div class="delivery-option-desc">3-5 business days</div>
+            </div>
+            <span class="delivery-option-price">FREE</span>
+          </label>
+
+          <label class="delivery-option">
+            <input type="radio" name="delivery" value="express" />
+            <div class="delivery-radio-visual"><div class="delivery-radio-dot"></div></div>
+            <span class="delivery-option-icon">⚡</span>
+            <div class="delivery-option-info">
+              <div class="delivery-option-name">Express Delivery</div>
+              <div class="delivery-option-desc">1-2 business days</div>
+            </div>
+            <span class="delivery-option-price">₹99</span>
+          </label>
+
+          <label class="delivery-option">
+            <input type="radio" name="delivery" value="sameday" />
+            <div class="delivery-radio-visual"><div class="delivery-radio-dot"></div></div>
+            <span class="delivery-option-icon">🏃</span>
+            <div class="delivery-option-info">
+              <div class="delivery-option-name">Same Day Delivery</div>
+              <div class="delivery-option-desc">Order before 12 PM</div>
+            </div>
+            <span class="delivery-option-price">₹199</span>
+          </label>
+
+          <label class="delivery-option">
+            <input type="radio" name="delivery" value="pickup" />
+            <div class="delivery-radio-visual"><div class="delivery-radio-dot"></div></div>
+            <span class="delivery-option-icon">🏪</span>
+            <div class="delivery-option-info">
+              <div class="delivery-option-name">Store Pickup</div>
+              <div class="delivery-option-desc">Ready in 2 hours</div>
+            </div>
+            <span class="delivery-option-price">FREE</span>
+          </label>
+
+        </div>
+      </div>
+
+      <!-- PAYMENT OPTIONS -->
+      <div class="delivery-card">
+        <h3>💳 Payment Options</h3>
+        <div class="payment-options">
+
+          <label class="payment-option selected">
+            <input type="radio" name="payment" value="cod" checked />
+            <div class="delivery-radio-visual"><div class="delivery-radio-dot"></div></div>
+            <div class="payment-icon-wrap pay-cash">💵</div>
+            <div class="payment-option-info">
+              <div class="payment-option-name">Cash on Delivery</div>
+              <div class="payment-option-desc">Pay when you receive</div>
+            </div>
+          </label>
+
+          <label class="payment-option">
+            <input type="radio" name="payment" value="upi" />
+            <div class="delivery-radio-visual"><div class="delivery-radio-dot"></div></div>
+            <div class="payment-icon-wrap pay-upi">📲</div>
+            <div class="payment-option-info">
+              <div class="payment-option-name">UPI Payment</div>
+              <div class="payment-option-desc">GPay, PhonePe, Paytm</div>
+            </div>
+          </label>
+
+          <label class="payment-option">
+            <input type="radio" name="payment" value="card" />
+            <div class="delivery-radio-visual"><div class="delivery-radio-dot"></div></div>
+            <div class="payment-icon-wrap pay-card">💳</div>
+            <div class="payment-option-info">
+              <div class="payment-option-name">Credit / Debit Card</div>
+              <div class="payment-option-desc">Visa, Mastercard, RuPay + EMI</div>
+            </div>
+          </label>
+
+          <label class="payment-option">
+            <input type="radio" name="payment" value="wallet" />
+            <div class="delivery-radio-visual"><div class="delivery-radio-dot"></div></div>
+            <div class="payment-icon-wrap pay-wallet">👛</div>
+            <div class="payment-option-info">
+              <div class="payment-option-name">Digital Wallet</div>
+              <div class="payment-option-desc">Paytm, Amazon Pay, Freecharge</div>
+            </div>
+          </label>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section testimonials-section" id="reviews">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-success" style="margin-bottom:0.75rem;">Reviews</span>
+      <h2 class="section-title">What Our <span class="gradient-text">Customers Say</span></h2>
+      <p class="section-sub">Join 50,000+ happy customers who trust MobileShop for their tech needs</p>
+    </div>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "Absolutely amazing experience! Got my iPhone 15 Pro in just 1 day. The packaging was perfect
+          and the price was the best I found online. Will definitely shop here again!"
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div>
+            <div class="author-name">Arjun Sharma</div>
+            <div class="author-loc">📍 Mumbai, India</div>
+          </div>
+          <div class="author-badge">✓ Verified</div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "Best mobile store in India! Their WhatsApp support is incredible — got live updates about
+          my order every step of the way. AirPods Pro arrived in pristine condition. 10/10!"
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#43E97B,#38F9D7);">P</div>
+          <div>
+            <div class="author-name">Priya Mehta</div>
+            <div class="author-loc">📍 Bangalore, India</div>
+          </div>
+          <div class="author-badge">✓ Verified</div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "The Cash on Delivery option is so convenient! I was hesitant to buy online but MobileShop
+          made it so easy. Got my Samsung Galaxy and the quality is absolutely top-notch."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#F7971E,#FFD200);">R</div>
+          <div>
+            <div class="author-name">Rahul Gupta</div>
+            <div class="author-loc">📍 Delhi, India</div>
+          </div>
+          <div class="author-badge">✓ Verified</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Trust Indicators -->
+    <div style="display:flex;justify-content:center;gap:2rem;margin-top:3rem;flex-wrap:wrap;">
+      <div style="text-align:center;padding:1rem 2rem;background:var(--gradient-card);border:1px solid var(--border-light);border-radius:var(--radius);">
+        <div style="font-size:1.8rem;font-weight:800;color:var(--primary-light);">50K+</div>
+        <div style="font-size:0.8rem;color:var(--text-muted);">Happy Customers</div>
+      </div>
+      <div style="text-align:center;padding:1rem 2rem;background:var(--gradient-card);border:1px solid var(--border-light);border-radius:var(--radius);">
+        <div style="font-size:1.8rem;font-weight:800;color:#43E97B;">4.9★</div>
+        <div style="font-size:0.8rem;color:var(--text-muted);">Average Rating</div>
+      </div>
+      <div style="text-align:center;padding:1rem 2rem;background:var(--gradient-card);border:1px solid var(--border-light);border-radius:var(--radius);">
+        <div style="font-size:1.8rem;font-weight:800;color:var(--secondary);">99.2%</div>
+        <div style="font-size:0.8rem;color:var(--text-muted);">Satisfaction Rate</div>
+      </div>
+      <div style="text-align:center;padding:1rem 2rem;background:var(--gradient-card);border:1px solid var(--border-light);border-radius:var(--radius);">
+        <div style="font-size:1.8rem;font-weight:800;color:var(--accent2);">24/7</div>
+        <div style="font-size:0.8rem;color:var(--text-muted);">Customer Support</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEWSLETTER ===== -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-card">
+      <span class="badge badge-primary" style="margin-bottom:1rem;">Newsletter</span>
+      <h2>Get <span class="gradient-text">15% OFF</span> Your First Order</h2>
+      <p>Subscribe to our newsletter and never miss out on exclusive deals, new arrivals, and flash sales.</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Enter your email address..." required />
+        <button type="submit">Subscribe 🎁</button>
+      </form>
+      <p style="margin-top:1rem;font-size:0.75rem;color:var(--text-muted);">
+        No spam, unsubscribe anytime. Join 50,000+ subscribers.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">📱</div>
+          Mobile<span>Shop</span>
+        </a>
+        <p>India's most trusted mobile e-commerce store. Premium products, best prices, lightning-fast delivery.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" title="Facebook">📘</a>
+          <a href="#" class="social-link" title="Instagram">📸</a>
+          <a href="#" class="social-link" title="Twitter">🐦</a>
+          <a href="#" class="social-link" title="YouTube">▶️</a>
+          <a href="#" class="social-link" title="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <div class="footer-links">
+          <a href="pages/products.html">All Products</a>
+          <a href="pages/categories.html">Categories</a>
+          <a href="pages/offers.html">Offers & Deals</a>
+          <a href="pages/about.html">About Us</a>
+          <a href="pages/contact.html">Contact Us</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Service</h4>
+        <div class="footer-links">
+          <a href="#">My Account</a>
+          <a href="#">Track Order</a>
+          <a href="#">Returns & Refunds</a>
+          <a href="#">Shipping Policy</a>
+          <a href="#">FAQs</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-links">
+          <a href="tel:+919876543210">📞 +91 98765 43210</a>
+          <a href="mailto:support@mobileshop.in">📧 support@mobileshop.in</a>
+          <a href="#">📍 Mumbai, Maharashtra</a>
+          <a href="#">🕒 Mon–Sat: 9AM–8PM</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 MobileShop. All rights reserved. Made with ❤️ in India.</p>
+      <div class="payment-badges">
+        <span class="payment-badge">💵 COD</span>
+        <span class="payment-badge">📲 UPI</span>
+        <span class="payment-badge">💳 Card</span>
+        <span class="payment-badge">🔒 Secure</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>🛒 Shopping Cart</h3>
+    <button class="close-cart">✕</button>
+  </div>
+  <div class="cart-items">
+    <div class="empty-cart">
+      <div class="empty-cart-icon">🛒</div>
+      <p>Your cart is empty</p>
+      <button class="btn btn-primary btn-sm" onclick="MobileShop.closeCart()">Shop Now</button>
+    </div>
+  </div>
+  <div class="cart-footer"></div>
+</aside>
+
+<!-- WHATSAPP FLOAT -->
+<div class="whatsapp-bubble">
+  <div class="whatsapp-tooltip">Chat with us 💬</div>
+  <button class="whatsapp-float-btn" title="Chat on WhatsApp">💬</button>
+</div>
+
+<!-- BACK TO TOP -->
+<button class="back-top" title="Back to Top">↑</button>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="mobile-nav">
+  <div class="mobile-nav-links">
+    <a href="index.html" class="mobile-nav-link active">
+      <span class="icon">🏠</span>
+      Home
+    </a>
+    <a href="pages/categories.html" class="mobile-nav-link">
+      <span class="icon">📁</span>
+      Categories
+    </a>
+    <a href="pages/offers.html" class="mobile-nav-link">
+      <span class="icon">🔥</span>
+      Deals
+    </a>
+    <a href="#" class="mobile-nav-link" onclick="event.preventDefault();MobileShop.openCart()">
+      <span class="icon">🛒</span>
+      Cart
+    </a>
+    <a href="pages/login.html" class="mobile-nav-link">
+      <span class="icon">👤</span>
+      Account
+    </a>
+  </div>
+</nav>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container"></div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
