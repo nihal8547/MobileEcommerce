@@ -31,9 +31,9 @@ export function ProductCard({ product }: ProductCardProps) {
   }
 
   return (
-    <Link href={`/product/${product.slug}`} className="product-card group block">
+    <Link href={`/product/${product.slug}`} className="product-card group block rounded-2xl border border-gray-100/80 hover:border-brand-200">
       {/* Image */}
-      <div className="relative bg-gray-50 aspect-square overflow-hidden">
+      <div className="relative bg-gray-50 aspect-square overflow-hidden rounded-t-2xl">
         {primaryImage?.url && primaryImage.url.trim() ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img

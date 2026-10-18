@@ -52,13 +52,8 @@ export function CartPageClient() {
           <div className="lg:col-span-2 flex flex-col gap-3">
             {items.map((item) => (
               <div key={`${item.productId}-${item.variant}`} className="bg-white rounded-2xl p-4 shadow-card flex gap-4">
-<<<<<<< HEAD
-                <div className="w-20 h-20 bg-gray-50 rounded-xl flex items-center justify-center flex-shrink-0 text-3xl overflow-hidden">
-                  {item.imageUrl && item.imageUrl.trim() ? (
-=======
                 <div className="w-20 h-20 bg-gray-50 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden">
-                  {item.imageUrl ? (
->>>>>>> 8144bc1deae3e2bf0b834b30195c47dfe6620dd3
+                  {item.imageUrl && item.imageUrl.trim() ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
                   ) : <Smartphone size={32} className="text-gray-300" strokeWidth={1} />}

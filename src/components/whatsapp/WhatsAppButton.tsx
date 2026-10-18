@@ -9,6 +9,8 @@ interface WhatsAppButtonProps {
   priceQar: number;
   whatsappNumber?: string;
   enabled?: boolean;
+  className?: string;
+  label?: string;
 }
 
 export function WhatsAppButton({
@@ -17,6 +19,8 @@ export function WhatsAppButton({
   priceQar,
   whatsappNumber = "+97466000000",
   enabled = true,
+  className = "btn-whatsapp w-full",
+  label = "WhatsApp",
 }: WhatsAppButtonProps) {
   if (!enabled) return null;
 
@@ -28,10 +32,10 @@ export function WhatsAppButton({
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="btn-whatsapp w-full"
+      className={`inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold py-3.5 px-4 rounded-xl text-sm transition-all shadow-sm hover:shadow-md cursor-pointer text-decoration-none ${className}`}
     >
-      <MessageCircle size={18} />
-      Enquire on WhatsApp
+      <MessageCircle size={17} className="flex-shrink-0" />
+      <span className="truncate">{label}</span>
     </a>
   );
 }

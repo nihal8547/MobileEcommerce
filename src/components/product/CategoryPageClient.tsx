@@ -5,28 +5,65 @@ import { SlidersHorizontal, ChevronDown, Grid2X2, List } from "lucide-react";
 import { ProductCard } from "@/components/product/ProductCard";
 import type { Product } from "@/types";
 
-const MOCK_PRODUCTS: Product[] = Array.from({ length: 12 }, (_, i) => ({
-  id: String(i + 1),
-  name: ["iPhone 16 Pro Max", "Samsung Galaxy S25 Ultra", "Google Pixel 9 Pro", "OnePlus 13", "Xiaomi 15 Ultra", "Nothing Phone 3"][i % 6] + ` ${i % 3 === 0 ? "256GB" : i % 3 === 1 ? "512GB" : "128GB"}`,
-  slug: `product-${i + 1}`,
-  sku: `SKU-${i + 1}`,
-  priceQar: [4799, 4299, 3499, 2999, 3199, 2499][i % 6],
-  originalPriceQar: [5399, 4999, 3799, 3299, 3599, 2799][i % 6],
-  discountPercent: [11, 14, 8, 9, 11, 11][i % 6],
-  stockQty: Math.max(1, 15 - i * 2),
-  isActive: true,
-  isFeatured: i < 4,
-  isBestSeller: i % 3 === 0,
-  isNewArrival: i % 4 === 0,
-  whatsappEnabled: true,
-  rating: 4.5 + (i % 5) * 0.1,
-  reviewCount: 20 + i * 12,
-  categoryId: "1",
-  brand: { id: String(i % 4 + 1), name: ["Apple", "Samsung", "Google", "OnePlus"][i % 4], slug: ["apple", "samsung", "google", "oneplus"][i % 4] },
-  images: [],
-  createdAt: new Date(),
-  updatedAt: new Date(),
-}));
+const PRODUCT_IMAGES = [
+  "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=600&q=80",
+];
+
+const KNOWN_SLUGS = [
+  "iphone-16-pro-max",
+  "samsung-s25-ultra",
+  "pixel-9-pro-xl",
+  "sony-wh1000xm6",
+  "apple-watch-series-10",
+  "ipad-pro-m4",
+];
+
+const MOCK_PRODUCTS: Product[] = Array.from({ length: 12 }, (_, i) => {
+  const name =
+    ["iPhone 16 Pro Max", "Samsung Galaxy S25 Ultra", "Google Pixel 9 Pro", "OnePlus 13", "Xiaomi 15 Ultra", "Nothing Phone 3"][i % 6] +
+    ` ${i % 3 === 0 ? "256GB" : i % 3 === 1 ? "512GB" : "128GB"}`;
+  const slug = i < 6 ? KNOWN_SLUGS[i] : `product-${i + 1}`;
+
+  return {
+    id: String(i + 1),
+    name,
+    slug,
+    sku: `SKU-${i + 1}`,
+    priceQar: [4799, 4299, 3499, 2999, 3199, 2499][i % 6],
+    originalPriceQar: [5399, 4999, 3799, 3299, 3599, 2799][i % 6],
+    discountPercent: [11, 14, 8, 9, 11, 11][i % 6],
+    stockQty: Math.max(1, 15 - i * 2),
+    isActive: true,
+    isFeatured: i < 4,
+    isBestSeller: i % 3 === 0,
+    isNewArrival: i % 4 === 0,
+    whatsappEnabled: true,
+    rating: 4.5 + (i % 5) * 0.1,
+    reviewCount: 20 + i * 12,
+    categoryId: "1",
+    brand: {
+      id: String((i % 4) + 1),
+      name: ["Apple", "Samsung", "Google", "OnePlus"][i % 4],
+      slug: ["apple", "samsung", "google", "oneplus"][i % 4],
+    },
+    images: [
+      {
+        id: `img-${i}`,
+        url: PRODUCT_IMAGES[i % PRODUCT_IMAGES.length],
+        altText: name,
+        isPrimary: true,
+        sortOrder: 0,
+      },
+    ],
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  };
+});
 
 interface CategoryPageClientProps {
   slug: string;

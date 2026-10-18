@@ -44,28 +44,69 @@ async function main() {
   // Categories
   const smartphones = await prisma.category.upsert({
     where: { slug: "smartphones" },
-    update: {},
-    create: { name: "Smartphones", slug: "smartphones", iconEmoji: "📱", sortOrder: 1 },
+    update: { imageUrl: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=400&q=80" },
+    create: {
+      name: "Smartphones",
+      slug: "smartphones",
+      imageUrl: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=400&q=80",
+      iconEmoji: "📱",
+      sortOrder: 1,
+    },
   });
   const tablets = await prisma.category.upsert({
     where: { slug: "tablets" },
-    update: {},
-    create: { name: "Tablets", slug: "tablets", iconEmoji: "📟", sortOrder: 2 },
+    update: { imageUrl: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=400&q=80" },
+    create: {
+      name: "Tablets",
+      slug: "tablets",
+      imageUrl: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=400&q=80",
+      iconEmoji: "📟",
+      sortOrder: 2,
+    },
   });
   const audio = await prisma.category.upsert({
     where: { slug: "audio" },
-    update: {},
-    create: { name: "Audio", slug: "audio", iconEmoji: "🎧", sortOrder: 3 },
+    update: { imageUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80" },
+    create: {
+      name: "Audio",
+      slug: "audio",
+      imageUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80",
+      iconEmoji: "🎧",
+      sortOrder: 3,
+    },
   });
   const wearables = await prisma.category.upsert({
     where: { slug: "wearables" },
-    update: {},
-    create: { name: "Wearables", slug: "wearables", iconEmoji: "⌚", sortOrder: 4 },
+    update: { imageUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80" },
+    create: {
+      name: "Wearables",
+      slug: "wearables",
+      imageUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80",
+      iconEmoji: "⌚",
+      sortOrder: 4,
+    },
   });
   const accessories = await prisma.category.upsert({
     where: { slug: "accessories" },
-    update: {},
-    create: { name: "Accessories", slug: "accessories", iconEmoji: "🔌", sortOrder: 5 },
+    update: { imageUrl: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=400&q=80" },
+    create: {
+      name: "Accessories",
+      slug: "accessories",
+      imageUrl: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=400&q=80",
+      iconEmoji: "🔌",
+      sortOrder: 5,
+    },
+  });
+  const gaming = await prisma.category.upsert({
+    where: { slug: "gaming" },
+    update: { imageUrl: "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?auto=format&fit=crop&w=400&q=80" },
+    create: {
+      name: "Gaming",
+      slug: "gaming",
+      imageUrl: "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?auto=format&fit=crop&w=400&q=80",
+      iconEmoji: "🎮",
+      sortOrder: 6,
+    },
   });
 
   // Products

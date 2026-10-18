@@ -2,125 +2,375 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Eye, EyeOff, Phone, Lock, ArrowRight } from "lucide-react";
+import {
+  Eye,
+  EyeOff,
+  Phone,
+  Mail,
+  Lock,
+  ArrowRight,
+  ShieldCheck,
+  Sparkles,
+  CheckCircle2,
+} from "lucide-react";
+import toast from "react-hot-toast";
 
 export default function LoginPage() {
+  const [loginMethod, setLoginMethod] = useState<"phone" | "email">("phone");
   const [showPass, setShowPass] = useState(false);
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({
+    phone: "",
+    email: "",
+    password: "",
+    rememberMe: true,
+  });
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
 
+  // Form submission (Email or Phone)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate auth
-    await new Promise((r) => setTimeout(r, 1000));
-    setLoading(false);
-    window.location.href = "/account";
+
+    try {
+      // Simulate network request
+      await new Promise((r) => setTimeout(r, 900));
+
+      const identifier =
+        loginMethod === "phone"
+          ? `+974 ${form.phone.trim()}`
+          : form.email.trim();
+
+      const userSession = {
+        fullName:
+          loginMethod === "phone" ? "Qatar Customer" : form.email.split("@")[0],
+        email:
+          loginMethod === "email" ? form.email : `${form.phone}@mobileshop.qa`,
+        phone: loginMethod === "phone" ? `+974 ${form.phone}` : "+974 5500 1234",
+        area: "Doha",
+        loggedInAt: new Date().toISOString(),
+      };
+
+      if (typeof window !== "undefined") {
+        localStorage.setItem("mobileshop_user", JSON.stringify(userSession));
+      }
+
+      toast.success(`Welcome back, ${userSession.fullName}!`, { icon: "👋" });
+      window.location.href = "/account";
+    } catch {
+      toast.error("Failed to sign in. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Google Login Handler
+  const handleGoogleLogin = async () => {
+    setGoogleLoading(true);
+    try {
+      // Simulate OAuth flow
+      await new Promise((r) => setTimeout(r, 1000));
+
+      const googleUser = {
+        fullName: "Mohammed Al-Kuwari",
+        email: "m.alkuwari@gmail.com",
+        phone: "+974 6612 8900",
+        area: "West Bay, Doha",
+        avatar:
+          "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80",
+        isGoogleAuth: true,
+        loggedInAt: new Date().toISOString(),
+      };
+
+      if (typeof window !== "undefined") {
+        localStorage.setItem("mobileshop_user", JSON.stringify(googleUser));
+      }
+
+      toast.success("Signed in with Google successfully!", { icon: "🚀" });
+      window.location.href = "/account";
+    } catch {
+      toast.error("Google sign in failed. Please try again.");
+    } finally {
+      setGoogleLoading(false);
+    }
+  };
+
+  // Quick Demo fill
+  const fillDemoAccount = () => {
+    setLoginMethod("phone");
+    setForm({
+      phone: "55123456",
+      email: "demo@mobileshop.qa",
+      password: "password123",
+      rememberMe: true,
+    });
+    toast("Demo credentials filled! Click 'Sign In'.", { icon: "⚡" });
   };
 
   return (
-    <main className="min-h-[80vh] flex items-center justify-center px-4 py-12">
+    <main className="min-h-[85vh] flex items-center justify-center px-4 py-12 bg-surface-secondary">
       <div className="w-full max-w-md">
-        {/* Logo */}
+        {/* Brand Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-brand-gradient flex items-center justify-center shadow-md">
-              <span className="text-white font-bold text-xl leading-none">M</span>
+          <Link href="/" className="inline-flex items-center gap-2.5 mb-4 group">
+            <div className="w-11 h-11 rounded-2xl bg-brand-gradient flex items-center justify-center shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+              <span className="text-white font-extrabold text-2xl leading-none">
+                M
+              </span>
             </div>
-            <div>
-              <div className="font-bold text-gray-900 text-xl">MobileShop</div>
-              <div className="text-[10px] text-brand-500 font-semibold uppercase tracking-wider leading-none">Qatar</div>
-            </div>
-          </div>
-          <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>
-          <p className="text-gray-500 text-sm mt-1">Sign in to your account</p>
-        </div>
-
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-card">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">Email Address</label>
-              <div className="relative">
-                <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
-                <input
-                  type="email"
-                  placeholder="you@example.com"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  required
-                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition-all"
-                />
+            <div className="text-left">
+              <div className="font-extrabold text-gray-900 text-xl tracking-tight">
+                MobileShop
+              </div>
+              <div className="text-[10px] text-brand-600 font-bold uppercase tracking-widest leading-none flex items-center gap-1">
+                <span>Qatar</span>
+                <span className="text-xs">🇶🇦</span>
               </div>
             </div>
+          </Link>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+            Welcome back
+          </h1>
+          <p className="text-gray-500 text-xs sm:text-sm mt-1.5">
+            Sign in to track orders, manage addresses & checkout faster
+          </p>
+        </div>
+
+        {/* Card Container */}
+        <div className="bg-white border border-gray-100 rounded-3xl p-6 sm:p-8 shadow-card">
+          {/* Google Sign-in Button */}
+          <button
+            type="button"
+            onClick={handleGoogleLogin}
+            disabled={googleLoading || loading}
+            className="w-full flex items-center justify-center gap-3 py-3 px-4 border border-gray-200 hover:border-gray-300 rounded-2xl text-sm font-bold text-gray-700 bg-white hover:bg-gray-50 transition-all shadow-xs cursor-pointer disabled:opacity-60 active:scale-[0.99]"
+          >
+            {googleLoading ? (
+              <span className="w-5 h-5 border-2 border-gray-300 border-t-brand-500 rounded-full animate-spin" />
+            ) : (
+              <>
+                <svg width="19" height="19" viewBox="0 0 24 24" className="flex-shrink-0">
+                  <path
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                    fill="#4285F4"
+                  />
+                  <path
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    fill="#34A853"
+                  />
+                  <path
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                    fill="#FBBC05"
+                  />
+                  <path
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    fill="#EA4335"
+                  />
+                </svg>
+                <span>Continue with Google</span>
+              </>
+            )}
+          </button>
+
+          {/* Divider */}
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-100" />
+            </div>
+            <div className="relative flex justify-center">
+              <span className="bg-white px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                or sign in with
+              </span>
+            </div>
+          </div>
+
+          {/* Toggle Login Method (Phone vs Email) */}
+          <div className="flex p-1 bg-gray-100 rounded-xl mb-5">
+            <button
+              type="button"
+              onClick={() => setLoginMethod("phone")}
+              className={`flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-bold rounded-lg transition-all ${
+                loginMethod === "phone"
+                  ? "bg-white text-gray-900 shadow-xs"
+                  : "text-gray-500 hover:text-gray-800"
+              }`}
+            >
+              <Phone size={14} />
+              <span>Mobile Number</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setLoginMethod("email")}
+              className={`flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-bold rounded-lg transition-all ${
+                loginMethod === "email"
+                  ? "bg-white text-gray-900 shadow-xs"
+                  : "text-gray-500 hover:text-gray-800"
+              }`}
+            >
+              <Mail size={14} />
+              <span>Email Address</span>
+            </button>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            {loginMethod === "phone" ? (
+              <div>
+                <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+                  Qatar Mobile Number
+                </label>
+                <div className="flex gap-2">
+                  <div className="flex items-center gap-1.5 px-3.5 border border-gray-200 rounded-2xl bg-gray-50 text-xs font-bold text-gray-700 whitespace-nowrap select-none">
+                    <span>🇶🇦</span>
+                    <span>+974</span>
+                  </div>
+                  <div className="relative flex-1">
+                    <Phone
+                      size={16}
+                      className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+                    />
+                    <input
+                      type="tel"
+                      placeholder="5500 0000 / 6600 0000"
+                      value={form.phone}
+                      onChange={(e) =>
+                        setForm({
+                          ...form,
+                          phone: e.target.value.replace(/[^0-9]/g, "").slice(0, 8),
+                        })
+                      }
+                      required
+                      className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-2xl text-sm font-medium focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-100 transition-all placeholder:text-gray-400"
+                    />
+                  </div>
+                </div>
+                <p className="text-[11px] text-gray-400 mt-1">
+                  Enter your 8-digit Qatar mobile number
+                </p>
+              </div>
+            ) : (
+              <div>
+                <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+                  Email Address
+                </label>
+                <div className="relative">
+                  <Mail
+                    size={16}
+                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+                  />
+                  <input
+                    type="email"
+                    placeholder="name@example.com"
+                    value={form.email}
+                    onChange={(e) =>
+                      setForm({ ...form, email: e.target.value })
+                    }
+                    required
+                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-2xl text-sm font-medium focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-100 transition-all placeholder:text-gray-400"
+                  />
+                </div>
+              </div>
+            )}
 
             <div>
               <div className="flex justify-between items-center mb-1.5">
-                <label className="text-sm font-medium text-gray-700">Password</label>
-                <Link href="/forgot-password" className="text-xs text-brand-500 hover:underline">
+                <label className="text-xs font-bold text-gray-700 uppercase tracking-wider">
+                  Password
+                </label>
+                <Link
+                  href="/forgot-password"
+                  className="text-xs font-semibold text-brand-600 hover:underline"
+                >
                   Forgot password?
                 </Link>
               </div>
               <div className="relative">
-                <Lock size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+                <Lock
+                  size={16}
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+                />
                 <input
                   type={showPass ? "text" : "password"}
-                  placeholder="••••••••"
+                  placeholder="Enter your password"
                   value={form.password}
-                  onChange={(e) => setForm({ ...form, password: e.target.value })}
+                  onChange={(e) =>
+                    setForm({ ...form, password: e.target.value })
+                  }
                   required
-                  className="w-full pl-10 pr-11 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition-all"
+                  className="w-full pl-10 pr-11 py-3 border border-gray-200 rounded-2xl text-sm font-medium focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-100 transition-all placeholder:text-gray-400"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPass(!showPass)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer"
+                  aria-label={showPass ? "Hide password" : "Show password"}
                 >
                   {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
             </div>
 
+            {/* Remember Me */}
+            <div className="flex items-center justify-between text-xs text-gray-600">
+              <label className="flex items-center gap-2 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={form.rememberMe}
+                  onChange={(e) =>
+                    setForm({ ...form, rememberMe: e.target.checked })
+                  }
+                  className="w-4 h-4 rounded text-brand-500 accent-brand-500"
+                />
+                <span className="font-medium">Remember me on this device</span>
+              </label>
+            </div>
+
             <button
               type="submit"
-              disabled={loading}
-              className="btn-primary mt-2 flex items-center justify-center gap-2"
+              disabled={loading || googleLoading}
+              className="btn-primary py-3.5 text-sm font-bold w-full rounded-2xl shadow-md shadow-brand-500/20 flex items-center justify-center gap-2 mt-2 cursor-pointer active:scale-[0.99] disabled:opacity-60"
             >
               {loading ? (
                 <span className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin" />
               ) : (
                 <>
-                  Sign In <ArrowRight size={16} />
+                  <span>Sign In</span>
+                  <ArrowRight size={16} />
                 </>
               )}
             </button>
           </form>
 
-          <div className="relative my-5">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-200" />
-            </div>
-            <div className="relative flex justify-center">
-              <span className="bg-white px-3 text-xs text-gray-400">or continue with</span>
-            </div>
+          {/* Quick Demo Test Sign In */}
+          <div className="mt-5 pt-4 border-t border-gray-100 text-center">
+            <button
+              type="button"
+              onClick={fillDemoAccount}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-brand-600 bg-gray-50 hover:bg-brand-50 px-3 py-1.5 rounded-xl border border-gray-200/80 transition-colors cursor-pointer"
+            >
+              <Sparkles size={12} className="text-amber-500" />
+              <span>Fill 1-Click Demo Credentials</span>
+            </button>
           </div>
-
-          <button className="w-full flex items-center justify-center gap-3 py-3 border border-gray-200 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-            <svg width="18" height="18" viewBox="0 0 24 24">
-              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-            </svg>
-            Sign in with Google
-          </button>
         </div>
 
-        <p className="text-center text-sm text-gray-500 mt-5">
-          Don&apos;t have an account?{" "}
-          <Link href="/register" className="text-brand-500 font-medium hover:underline">
-            Sign up
-          </Link>
-        </p>
+        {/* Security & Link */}
+        <div className="mt-6 flex flex-col items-center gap-3">
+          <p className="text-center text-xs sm:text-sm text-gray-500">
+            Don&apos;t have an account?{" "}
+            <Link
+              href="/register"
+              className="text-brand-600 font-bold hover:underline"
+            >
+              Create Account (Sign Up)
+            </Link>
+          </p>
+
+          <div className="inline-flex items-center gap-1.5 text-[11px] text-gray-400">
+            <ShieldCheck size={14} className="text-emerald-500" />
+            <span>256-bit SSL Encrypted & Protected</span>
+          </div>
+        </div>
       </div>
     </main>
   );

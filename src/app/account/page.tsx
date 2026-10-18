@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Package, Heart, MapPin, Settings, LogOut, ChevronRight, Clock, CheckCircle, Truck, ShoppingBag, Smartphone, Headphones, Watch } from "lucide-react";
+import { Package, Heart, MapPin, Settings, LogOut, ChevronRight, Clock, CheckCircle, Truck, ShoppingBag, Smartphone, Headphones, Watch, Phone } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { formatQar } from "@/lib/utils";
+import toast from "react-hot-toast";
 
 const MOCK_ORDERS: { id: string; date: string; status: string; total: number; items: { name: string; qty: number; Icon: LucideIcon }[] }[] = [
   {
@@ -38,8 +39,44 @@ const STATUS_CONFIG = {
 
 type Tab = "orders" | "wishlist" | "addresses" | "settings";
 
+interface UserProfile {
+  fullName: string;
+  email: string;
+  phone: string;
+  area: string;
+  avatar?: string;
+}
+
 export default function AccountPage() {
   const [tab, setTab] = useState<Tab>("orders");
+  const [user, setUser] = useState<UserProfile>({
+    fullName: "Ahmed Al-Rashid",
+    email: "ahmed@example.com",
+    phone: "+974 5500 1234",
+    area: "West Bay, Doha",
+  });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("mobileshop_user");
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          setUser((prev) => ({ ...prev, ...parsed }));
+        } catch {
+          // ignore error
+        }
+      }
+    }
+  }, []);
+
+  const handleSignOut = () => {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("mobileshop_user");
+    }
+    toast.success("Signed out successfully!");
+    window.location.href = "/login";
+  };
 
   const tabs = [
     { id: "orders" as Tab, label: "Orders", icon: Package },
@@ -51,15 +88,22 @@ export default function AccountPage() {
   return (
     <main className="container-main py-8">
       {/* Header */}
-      <div className="flex items-center gap-4 mb-8">
-        <div className="w-16 h-16 rounded-2xl bg-brand-gradient flex items-center justify-center text-white text-2xl font-bold shadow-md">
-          A
+      <div className="flex flex-wrap items-center gap-4 mb-8 p-6 bg-white rounded-3xl border border-gray-100 shadow-card">
+        <div className="w-16 h-16 rounded-2xl bg-brand-gradient flex items-center justify-center text-white text-2xl font-bold shadow-md flex-shrink-0">
+          {user.fullName ? user.fullName[0].toUpperCase() : "A"}
         </div>
         <div>
-          <h1 className="text-xl font-bold text-gray-900">Ahmed Al-Rashid</h1>
-          <p className="text-sm text-gray-500">ahmed@example.com • West Bay, Doha</p>
+          <h1 className="text-xl sm:text-2xl font-extrabold text-gray-900">
+            {user.fullName}
+          </h1>
+          <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
+            {user.email} • {user.phone} • {user.area}
+          </p>
         </div>
-        <button className="ml-auto flex items-center gap-1.5 text-sm text-red-500 hover:text-red-600 transition-colors">
+        <button
+          onClick={handleSignOut}
+          className="ml-auto flex items-center gap-1.5 px-4 py-2 border border-red-100 bg-red-50 hover:bg-red-100 text-red-600 rounded-xl text-xs sm:text-sm font-bold transition-colors cursor-pointer"
+        >
           <LogOut size={15} />
           Sign out
         </button>
